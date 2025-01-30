@@ -1,6 +1,6 @@
 import { useContext, useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
-import { Context } from '../../context';
+import { Context } from '../../provider';
 import FileDropDown from '../file/FileDropDown';
 
 interface StyledComponentProps {

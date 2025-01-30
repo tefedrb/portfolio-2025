@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import MiniFile from './MiniFile';
 import styled from 'styled-components';
 import PathToFile from '../svg/PathToFile';
-import { Context } from '../../context';
+import { Context } from '../../provider';
 
 interface FileNameProps {
   name?: string;

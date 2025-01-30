@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 import styled from 'styled-components';
-import { Context } from '../../context';
+import { Context } from '../../provider';
 import { getViewportXY } from '../../utils/viewportUtils';
 
 const PathWrap = styled.div`

@@ -1,5 +1,5 @@
 import Home from './components/home/Home';
-import { Provider } from './context';
+import { Provider } from './provider';
 import Monitor from './components/monitor/Monitor';
 // import "98.css";
 

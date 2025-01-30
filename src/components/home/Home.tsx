@@ -3,7 +3,7 @@ import MainDisplay from '../mainDisplay/MainDisplay';
 import MobileNavAdapter from '../navigation/MobileNavAdapter';
 import styled, { keyframes } from 'styled-components';
 import paper from '../imgs/paper.png';
-import { Context } from '../../context';
+import { Context } from '../../provider';
 
 const grain = keyframes`
   0%, 100% { transform: translate(0, 0) }

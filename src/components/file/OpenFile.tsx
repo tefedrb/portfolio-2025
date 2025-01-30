@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { Context } from '../../context';
+import { Context } from '../../provider';
 import { OpenFileDisplay } from './fileStyledComponents';
 import "98.css";
 

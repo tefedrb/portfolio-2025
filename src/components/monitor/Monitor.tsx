@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { Context } from '../../context';
+import { Context } from '../../provider';
 import './monitor.scss';
 import powerBtn from '../../imgs/power3.svg';
 
