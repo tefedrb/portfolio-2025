@@ -1,6 +1,63 @@
 import { createContext, useState } from 'react';
 
-export const Context = createContext({});
+interface GlobalState {
+  folderLoc: [number, number];
+  filesDisplayed: Array<{name: string}>;
+  fileLoaded: string;
+  monitorPower: boolean;
+}
+
+interface ContextState {
+  globalState: GlobalState;
+  files: {
+    [key: string]: {
+      link: string;
+      name: string;
+      content: JSX.Element;
+    }
+  };
+  folder: {
+    [key: string]: Array<{
+      link: string;
+      name: string;
+      content: JSX.Element;
+    }>;
+  };
+  verticalDisplay: boolean;
+  blueScreen: boolean;
+  isMobileHack: boolean;
+  globalStateUpdater: (prop: keyof GlobalState, value: any, switcher: any) => void;
+  rehydrateStateFromStorage: (item: any) => string | null;
+  saveStateForMobileHack: (item: string, value: any) => void;
+  checkStorageForMobileHack: () => boolean;
+  signalMobileHack: React.Dispatch<React.SetStateAction<boolean>>;
+  isVerticalDisplay: React.Dispatch<React.SetStateAction<boolean>>;
+  updateBlueScreen: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const defaultState: ContextState = {
+  globalState: {
+    folderLoc: [100, 20],
+    filesDisplayed: [{name: "about.js"}],
+    fileLoaded: "about.js",
+    monitorPower: true
+  },
+  files: {},
+  folder: {},
+  verticalDisplay: false,
+  blueScreen: false,
+  isMobileHack: false,
+  globalStateUpdater: () => {},
+  rehydrateStateFromStorage: () => null,
+  saveStateForMobileHack: () => {},
+  checkStorageForMobileHack: () => false,
+  signalMobileHack: () => {},
+  isVerticalDisplay: () => {},
+  updateBlueScreen: () => {}
+};
+
+export const Context = createContext<ContextState>(defaultState);
+
 import Project from './components/folderContents/Project';
 import Equipped from './components/folderContents/Equipped';
 import Bookshop from './components/folderContents/Bookshop';
