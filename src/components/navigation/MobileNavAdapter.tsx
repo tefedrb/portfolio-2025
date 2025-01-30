@@ -1,9 +1,9 @@
 import { useContext } from 'react';
 import styled from 'styled-components';
 import NavigationPanel from './NavigationPanel';
-import MiniFile from '../File/MiniFile';
+import MiniFile from '../file/MiniFile';
 import { Context } from '../../context';
-import { FileName, FileWrapper } from '../File/FileDropDown';
+import { FileName, FileWrapper } from '../file/FileDropDown';
 
 const MobileFilePopUp = styled.div`
   display: none;
@@ -50,6 +50,7 @@ const MobileNavWrapper = styled.div`
 `;
 
 interface MobileNavAdapterProps {
+  name?: string;
   changeFolder: (folderName: string) => void;
 }
 

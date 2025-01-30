@@ -2,6 +2,11 @@ import styled from 'styled-components';
 import { FC } from 'react';
 import OpenFile from '../file/OpenFile';
 
+interface MainDisplayProps {
+  openFolder?: string;
+  name?: string;
+}
+
 const Screen = styled.div`
   display: flex;
   flex-direction: column;
@@ -18,18 +23,9 @@ const Screen = styled.div`
   }
 `;
 
-interface Size {
-  width: string;
-  height: string;
-}
+const MainDisplay: FC<MainDisplayProps> = (props: any) => {
+  const { openFolder } = props;
 
-interface OpenFileProps {
-  color: string;
-  name: string;
-  size: Size;
-}
-
-const MainDisplay: FC = () => {
   return (
     <Screen>
       <OpenFile

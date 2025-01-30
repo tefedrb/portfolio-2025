@@ -1,6 +1,6 @@
 import { useState, useContext, useEffect } from 'react';
 import MainDisplay from '../mainDisplay/MainDisplay';
-import MobileNavAdapter from './Navigation/MobileNavAdapter';
+import MobileNavAdapter from '../navigation/MobileNavAdapter';
 import styled, { keyframes } from 'styled-components';
 import paper from '../imgs/paper.png';
 import { Context } from '../../context';
@@ -18,7 +18,11 @@ const grain = keyframes`
   90% { transform: translate(-10%, 10%) }
 `;
 
-const HomeWrapper = styled.div`
+interface HomeWrapperProps {
+  name?: string;
+}
+
+const HomeWrapper = styled.div<HomeWrapperProps>`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -30,7 +34,11 @@ const HomeWrapper = styled.div`
   background-color: rgb(5, 5, 5);
 `;
 
-const InnerHome = styled.div`
+interface InnerHomeProps {
+  name?: string;
+}
+
+const InnerHome = styled.div<InnerHomeProps>`
   display: flex;
   justify-content: center;
   align-items: center;

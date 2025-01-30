@@ -2,6 +2,7 @@ import styled from "styled-components";
 import "98.css";
 
 interface GraphicWrapperProps {
+  name?: string;
   mini?: boolean;
   size?: {
     height: number;
@@ -9,21 +10,26 @@ interface GraphicWrapperProps {
 }
 
 interface GraphicHeadWrapperProps {
+  name?: string;
   mini?: boolean;
   foldSize?: string;
 }
 
 interface GraphicHeadProps {
+  name?: string;
   mini?: boolean;
 }
 
 interface GraphicFoldProps {
+  name?: string;
   mini?: boolean;
   foldSize?: string;
   dynamicHeight?: number;
 }
 
 interface GraphicBodyProps {
+  size?: any;
+  name?: string;
   mini?: boolean;
 }
 
