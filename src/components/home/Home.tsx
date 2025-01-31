@@ -1,9 +1,9 @@
-import { useState, useContext, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import MainDisplay from '../mainDisplay/MainDisplay';
 import MobileNavAdapter from '../navigation/MobileNavAdapter';
 import styled, { keyframes } from 'styled-components';
-import paper from '../imgs/paper.png';
-import { Context } from '../../provider';
+import paper from '../../assets/paper.png';
+import { useProfileContext } from '../../useProfileContext';
 
 const grain = keyframes`
   0%, 100% { transform: translate(0, 0) }
@@ -74,9 +74,10 @@ const InnerHome = styled.div<InnerHomeProps>`
 
 // Info needs to go from navigation through MainDisplay
 const Home = () => {
-  const { checkStorageForMobileHack, saveStateForMobileHack, globalState } = useContext(Context);
+  const { checkStorageForMobileHack, saveStateForMobileHack, globalState } = useProfileContext();
   const { monitorPower } = globalState;
   const [openFolder, changeFolder] = useState("About");
+  console.log('globalState', globalState);
 
   useEffect(() => {
     console.log("11.11.20 v9");
@@ -92,8 +93,8 @@ const Home = () => {
     };
 
     window.addEventListener('orientationchange', mobileHack);
-    () => window.removeEventListener('orientationchange', mobileHack);
-  }, []);
+    return () => window.removeEventListener('orientationchange', mobileHack);
+  }, [checkStorageForMobileHack, saveStateForMobileHack]);
 
   return (
     <HomeWrapper className={`container ${monitorPower ? 'addFlicker' : 'none'}`} name={"home wrapper"}>

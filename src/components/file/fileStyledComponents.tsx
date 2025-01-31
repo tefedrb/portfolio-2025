@@ -28,7 +28,7 @@ interface GraphicFoldProps {
 }
 
 interface GraphicBodyProps {
-  size?: any;
+  size?: number;
   name?: string;
   mini?: boolean;
 }
@@ -36,7 +36,7 @@ interface GraphicBodyProps {
 interface OpenFileDisplayProps {
   children: React.ReactNode;
   name?: string;
-  size?: number;
+  size?: { width: string; height: string };
 }
 
 export const GraphicWrapper = styled.div<GraphicWrapperProps>`

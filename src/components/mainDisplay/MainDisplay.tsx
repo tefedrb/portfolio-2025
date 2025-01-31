@@ -25,7 +25,7 @@ const Screen = styled.div`
 
 const MainDisplay: FC<MainDisplayProps> = (props: MainDisplayProps) => {
   const { openFolder } = props;
-  console.log(openFolder);
+  console.log(openFolder, "<--- MainDisplay");
   return (
     <Screen>
       <OpenFile

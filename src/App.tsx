@@ -1,15 +1,18 @@
 import Home from './components/home/Home';
-import { Provider } from './provider';
+import { ProviderValue } from './provider';
 import Monitor from './components/monitor/Monitor';
+import { Context, ContextState } from './context';
 // import "98.css";
 
 const App = () => {
+  const value = ProviderValue();
+  console.log('value', value);
   return (
-    <Provider>
+    <Context.Provider value={value as ContextState}>
       <Monitor>
         <Home />
       </Monitor>
-    </Provider>
+    </Context.Provider>
   );
 };
 

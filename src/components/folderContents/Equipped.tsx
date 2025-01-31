@@ -1,4 +1,4 @@
-import equipmentImg from '../../imgs/Equipped_Equipment.png';
+import equipmentImg from '../../assets/Equipped_Equipment.png';
 import { TextWrap, Text, AppUI, ProjLinkWrap, ProjLink } from './styledComponents';
 
 const Equipped = () => {

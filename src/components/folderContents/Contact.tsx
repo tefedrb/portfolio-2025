@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import gitHubImg from '../../imgs/icons/github.png';
-import linkedInImg from '../../imgs/icons/linkedin.png';
-import gmailImg from '../../imgs/icons/gmail.png';
-import twitterImg from '../../imgs/icons/twitter.png';
+import gitHubImg from '../../assets/icons/github.png';
+import linkedInImg from '../../assets/icons/linkedin.png';
+import gmailImg from '../../assets/icons/gmail.png';
+import twitterImg from '../../assets/icons/twitter.png';
 
 const ContactOuterWrap = styled.div`
   height: 70%;

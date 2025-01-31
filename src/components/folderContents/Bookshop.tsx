@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import bookshopImg from '../../imgs/Bookshop-Crutch.png';
+import bookshopImg from '../../assets/Bookshop-Crutch.png';
 import { TextWrap, Text, AppUI, ProjLinkWrap, ProjLink } from './styledComponents';
 
 const Bookshop = () => {

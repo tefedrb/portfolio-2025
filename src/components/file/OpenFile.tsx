@@ -1,10 +1,15 @@
-import { useContext } from 'react';
-import { Context } from '../../provider';
+import { useProfileContext } from '../../useProfileContext';
 import { OpenFileDisplay } from './fileStyledComponents';
 import "98.css";
 
-const OpenFile = (props: any) => {
-    const { files, globalState } = useContext(Context);
+interface OpenFileProps {
+  name: string;
+  color: string;
+  size: { width: string; height: string };
+}
+
+const OpenFile = (props: OpenFileProps) => {
+    const { files, globalState } = useProfileContext();
     // const classicWindow = (
     //     <div style={{ width: 1000}} className="window">
     //         <div className="title-bar">

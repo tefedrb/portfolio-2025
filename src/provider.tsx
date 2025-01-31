@@ -1,5 +1,4 @@
-import { useState, ReactNode } from 'react';
-import { Context } from './context';
+import { useState, useCallback, useMemo } from 'react';
 
 import Project from './components/folderContents/Project';
 import Equipped from './components/folderContents/Equipped';
@@ -7,11 +6,12 @@ import Bookshop from './components/folderContents/Bookshop';
 import About from './components/folderContents/About';
 import Contact from './components/folderContents/Contact';
 
-export const Provider = ({ children }: { children: ReactNode }) => {
-  const files = {
-  "equipped.java":
-    {
-      link: "Equipped",
+export const ProviderValue = () => {
+  const files = useMemo(() => {
+    return {
+      "equipped.java":
+        {
+          link: "Equipped",
       name: "equipped.java",
       content: <Project component={<Equipped/>}/>
     },
@@ -36,13 +36,16 @@ export const Provider = ({ children }: { children: ReactNode }) => {
         name: "contact.js",
         content: <Project flexbox={true} component={<Contact/>}/>
       } 
-    }
+      }
+  }, []);
 
-  const folder = {
-    "About": [files["about.js"]],
-    "Projects": [files["equipped.java"], files["bookshop-crutch.js"]],
-    "Contact": [files["contact.js"]],
-  }
+  const folder = useMemo(() => {
+    return {
+      "About": [files["about.js"]],
+      "Projects": [files["equipped.java"], files["bookshop-crutch.js"]],
+      "Contact": [files["contact.js"]],
+    }
+  }, [files]);
 
   const [ blueScreen, updateBlueScreen ] = useState(false);
 
@@ -63,7 +66,7 @@ export const Provider = ({ children }: { children: ReactNode }) => {
 
   const [ verticalDisplay, isVerticalDisplay ] = useState(false);
 
-  const globalStateUpdater = (
+  const globalStateUpdater = useCallback((
     prop: keyof GlobalState, 
     value: string | boolean | [number, number] | Array<{name: string}>, 
     switcher: boolean
@@ -77,46 +80,55 @@ export const Provider = ({ children }: { children: ReactNode }) => {
         [prop]: value
       }
     })
-  }
+  }, [globalState]);
 
-  const saveStateForMobileHack = (item: string, value: string | boolean) => {
+  const saveStateForMobileHack = useCallback((item: string, value: string | boolean) => {
     localStorage.setItem(`${item}`, `${value}`);
-  }
+  }, []);
 
-  const checkStorageForMobileHack = () => {
+  const checkStorageForMobileHack = useCallback(() => {
     const mobileHack = localStorage.getItem('isMobileHack');
     if(mobileHack === 'true'){
       return true;
     } else {
       return false;
     }
-  }
+  }, []);
 
-  const rehydrateStateFromStorage = (item: string) => {
+  const rehydrateStateFromStorage = useCallback((item: string) => {
     return localStorage.getItem(item);
-  }
+  }, []);
 
-  return (
-    <Context.Provider 
-      value={{ 
-        globalState, 
-        files,
-        folder,
-        verticalDisplay,
-        blueScreen,
-        isMobileHack,
-        globalStateUpdater,
-        rehydrateStateFromStorage,
-        saveStateForMobileHack,
-        checkStorageForMobileHack,
-        signalMobileHack,
-        isVerticalDisplay,
-        updateBlueScreen
-      }}
-    >
-      { children }
-    </Context.Provider>
-  )
+  const value = useMemo(() => {
+    return { 
+      globalState, 
+      files,
+      folder,
+      verticalDisplay,
+      blueScreen,
+      isMobileHack,
+      globalStateUpdater,
+      rehydrateStateFromStorage,
+      saveStateForMobileHack,
+      checkStorageForMobileHack,
+      signalMobileHack,
+      isVerticalDisplay,
+      updateBlueScreen
+    }
+  }, [
+    globalState, 
+    files, 
+    folder, 
+    verticalDisplay, 
+    blueScreen, 
+    isMobileHack, 
+    globalStateUpdater, 
+    rehydrateStateFromStorage,
+    saveStateForMobileHack,
+    checkStorageForMobileHack,
+    signalMobileHack,
+    isVerticalDisplay,
+    updateBlueScreen
+  ]);
+  return value;
 }
-
-export const Consumer = Context.Consumer;

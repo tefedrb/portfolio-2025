@@ -1,8 +1,7 @@
-import { useContext } from 'react';
 import styled from 'styled-components';
 import NavigationPanel from './NavigationPanel';
 import MiniFile from '../file/MiniFile';
-import { Context } from '../../context';
+import { useProfileContext } from '../../useProfileContext';
 import { FileName, FileWrapper } from '../file/FileDropDown';
 
 const MobileFilePopUp = styled.div`
@@ -55,7 +54,7 @@ interface MobileNavAdapterProps {
 }
 
 const MobileNavAdapter: React.FC<MobileNavAdapterProps> = (props) => {
-  const { globalState, globalStateUpdater } = useContext(Context);
+  const { globalState, globalStateUpdater } = useProfileContext();
   const { filesDisplayed, fileLoaded } = globalState;
 
   const files = () => {

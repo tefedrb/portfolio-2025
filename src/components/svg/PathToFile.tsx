@@ -1,6 +1,6 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { Context } from '../../provider';
+import { useProfileContext } from '../../useProfileContext';
 import { getViewportXY } from '../../utils/viewportUtils';
 
 const PathWrap = styled.div`
@@ -9,11 +9,11 @@ const PathWrap = styled.div`
   }
 `;
 
-const Lines = styled.svg`
-  height: 100vh;
-  width: 100vw;
-  position: absolute;
-`;
+// const Lines = styled.svg`
+//   height: 100vh;
+//   width: 100vw;
+//   position: absolute;
+// `;
 
 interface PathToFileProps {
   numOfFiles: number;
@@ -26,62 +26,55 @@ interface Sizes {
   xValue?: number;
 }
 
-interface ContextState {
-  state: {
-    folderY?: number;
-    xValue?: number;
-  };
-  verticalDisplay: boolean;
-}
-
 const PathToFile = (props: PathToFileProps) => {
-  const context = useContext(Context) as unknown as ContextState;
-  const { state, verticalDisplay } = context;
+  const context = useProfileContext();
+  const { globalState, verticalDisplay } = context;
   const [sizes, updateSizes] = useState<Sizes>({});
 
   useEffect(() => {
-    if (!sizes.loaded && state?.folderY) {
+    if (!sizes.loaded && typeof globalState.folderLoc[1] === 'number') {
+      console.log('globalState.folderLoc', globalState.folderLoc);
       updateSizes({
         originalScrnSize: getViewportXY(),
         loaded: true,
-        folderY: state?.folderY,
-        xValue: state?.xValue,
+        folderY: globalState?.folderLoc[1],
+        xValue: globalState?.folderLoc[0],
       });
     }
-  }, [state, sizes.loaded]);
+  }, [globalState, sizes.loaded]);
 
-  const filePath = () =>
-    sizes.folderY ? (
-      <svg style={{ height: '100vh', width: '100vw', position: 'absolute' }}>
-        <path
-          d={`M 20 ${sizes.folderY + 50} H 35 V 90 H ${sizes.xValue! + 10} v -5`}
-          fill="transparent"
-          stroke="white"
-        />
-      </svg>
-    ) : (
-      ''
-    );
+  // const filePath = () =>
+  //   sizes.folderY ? (
+  //     <svg style={{ height: '100vh', width: '100vw', position: 'absolute' }}>
+  //       <path
+  //         d={`M 20 ${sizes.folderY + 50} H 35 V 90 H ${sizes.xValue! + 10} v -5`}
+  //         fill="transparent"
+  //         stroke="white"
+  //       />
+  //     </svg>
+  //   ) : (
+  //     ''
+  //   );
 
-  const newStuff = { height: '100vh', width: '100vw', position: 'absolute' };
+  // const newStuff = { height: '100vh', width: '100vw', position: 'absolute' };
 
-  const displayPath = (xyArr: [number, number]) => {
-    const x =
-      sizes?.xValue! - (sizes?.originalScrnSize?.[0]! - xyArr[0]) + 50;
-    const y =
-      sizes?.folderY! - (sizes?.originalScrnSize?.[1]! - xyArr[1]) + 10;
+  // const displayPath = (xyArr: [number, number]) => {
+  //   const x =
+  //     sizes?.xValue! - (sizes?.originalScrnSize?.[0]! - xyArr[0]) + 50;
+  //   const y =
+  //     sizes?.folderY! - (sizes?.originalScrnSize?.[1]! - xyArr[1]) + 10;
 
-    const dString = `M 20 ${y} H 35 V 90 H ${x} v -5`;
+  //   const dString = `M 20 ${y} H 35 V 90 H ${x} v -5`;
 
-    const linePath = sizes?.xValue ? (
-      <Lines>
-        <path d={dString} fill="transparent" stroke="white" />
-      </Lines>
-    ) : (
-      <p></p>
-    );
-    return linePath;
-  };
+  //   const linePath = sizes?.xValue ? (
+  //     <Lines>
+  //       <path d={dString} fill="transparent" stroke="white" />
+  //     </Lines>
+  //   ) : (
+  //     <p></p>
+  //   );
+  //   return linePath;
+  // };
 
   const buildPath = () => {
     const length = props.numOfFiles;

@@ -1,10 +1,13 @@
-import { useContext } from 'react';
-import { Context } from '../../provider';
+import { useProfileContext } from '../../useProfileContext';
 import './monitor.scss';
-import powerBtn from '../../imgs/power3.svg';
+import powerBtn from '../../assets/power3.svg';
 
-const Monitor = (props: any) => {
-  const { globalState, globalStateUpdater } = useContext(Context);
+interface MonitorProps {
+  children: React.ReactNode;
+}
+
+const Monitor = (props: MonitorProps) => {
+  const { globalState, globalStateUpdater } = useProfileContext();
   const { monitorPower } = globalState;
 
   const powerHandler = () => {

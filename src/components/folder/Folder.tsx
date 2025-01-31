@@ -1,6 +1,6 @@
-import { useContext, useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
-import { Context } from '../../provider';
+import { useProfileContext } from '../../useProfileContext';
 import FileDropDown from '../file/FileDropDown';
 
 interface StyledComponentProps {
@@ -108,7 +108,7 @@ const SmScrnContents = styled.p<StyledComponentProps>`
 interface FolderProps {
   title: string;
   openFolder: string;
-  files: any[];
+  files: Array<{name: string}>;
   changeOpenFolder: (title: string) => void;
 }
 
@@ -116,7 +116,7 @@ const Folder: React.FC<FolderProps> = (props) => {
   const [openFolder, toggleState] = useState<boolean>(false);
   const [styledCompProps, changeStyledProps] = useState<{ folderFront: { trans: string, left: string }, paper: { bottom: string } } | undefined>();
   const folderNode = useRef<HTMLDivElement | null>(null);
-  const { verticalDisplay } = useContext(Context);
+  const { verticalDisplay } = useProfileContext();
   
   const handleClick = () => {
     if (!openFolder) {
@@ -125,26 +125,27 @@ const Folder: React.FC<FolderProps> = (props) => {
     }
   }
 
-  const setFolderProp = () => {
-    return {
-      folderFront: {
-        trans: `${openFolder ? "skew(-20deg)" : "skew(-10deg)"}`,
-        left: `${openFolder ? "20%" : "10%"}`
-      },
-      paper: {
-        bottom: `${openFolder ? "12%" : "0"}`,
-      }
-    }
-  }
+  
 
   useEffect(() => {
+    const setFolderProp = () => {
+      return {
+        folderFront: {
+          trans: `${openFolder ? "skew(-20deg)" : "skew(-10deg)"}`,
+          left: `${openFolder ? "20%" : "10%"}`
+        },
+        paper: {
+          bottom: `${openFolder ? "12%" : "0"}`,
+        }
+      }
+    }
     if (props?.title === props?.openFolder) {
       toggleState(true);
     } else { 
       toggleState(false);
     }
     changeStyledProps(setFolderProp());
-  }, [props.openFolder, openFolder, verticalDisplay]);
+  }, [props.openFolder, props.title, openFolder, verticalDisplay]);
 
   const displayDropDown = () => {
     return ( 

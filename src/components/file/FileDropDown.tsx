@@ -1,8 +1,7 @@
-import { useContext } from 'react';
+import { useProfileContext } from '../../useProfileContext';
 import MiniFile from './MiniFile';
 import styled from 'styled-components';
 import PathToFile from '../svg/PathToFile';
-import { Context } from '../../provider';
 
 interface FileNameProps {
   name?: string;
@@ -94,9 +93,9 @@ interface FileDropDownProps {
   display: boolean;
 }
 
-const FileDropDown: React.FC<FileDropDownProps> = (props) => {
-  const { globalStateUpdater } = useContext(Context);
-  const { verticalDisplay, globalState: { fileLoaded } } = useContext(Context);
+const FileDropDown: React.FC<FileDropDownProps> = (props: FileDropDownProps) => {
+  const { globalStateUpdater } = useProfileContext();
+  const { verticalDisplay, globalState: { fileLoaded } } = useProfileContext();
 
   const files = props?.files.map((fileData, key) => (
       <FileWrapper name={"fileWrapper"} key={key}>

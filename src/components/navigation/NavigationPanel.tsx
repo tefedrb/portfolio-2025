@@ -1,7 +1,7 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect } from 'react';
 import Folder from '../folder/Folder';
 import styled from 'styled-components';
-import { Context } from '../../provider';
+import { useProfileContext } from '../../useProfileContext';
 
 interface NavWrapperProps {
   name?: string;
@@ -31,7 +31,11 @@ const NavWrapper = styled.nav<NavWrapperProps>`
   }
 `
 
-const NavigationPanel = (props: any) => {
+interface NavigationPanelProps {
+  changeFolder: (folder: string) => void;
+}
+
+const NavigationPanel = (props: NavigationPanelProps) => {
   const [ openFolder, changeOpenFolder ] = useState("About");
   const { 
     folder, 
@@ -40,29 +44,38 @@ const NavigationPanel = (props: any) => {
     checkStorageForMobileHack, 
     globalState, 
     globalStateUpdater 
-  } = useContext(Context);
+  } = useProfileContext();
   const { fileLoaded } = globalState;
 
   useEffect(() => {
 
-      /* TODO: Create a centralized function in context that has all the switches
-          and updates in it's own state - this function will rehydrate all the 
-          components when hack is initiated and window gets reloaded */
+    /* TODO: Create a centralized function in context that has all the switches
+        and updates in it's own state - this function will rehydrate all the 
+        components when hack is initiated and window gets reloaded */
 
-      if(checkStorageForMobileHack()){
-          globalStateUpdater("fileLoaded", rehydrateStateFromStorage('fileOpen') as string, false);
-          changeOpenFolder(rehydrateStateFromStorage('folderOpen') as string);
+    if(checkStorageForMobileHack()){
+      console.log('checkStorageForMobileHack', checkStorageForMobileHack());
+      globalStateUpdater("fileLoaded", rehydrateStateFromStorage('fileOpen') as string, false);
+      changeOpenFolder(rehydrateStateFromStorage('folderOpen') as string);
 
-          saveStateForMobileHack('isMobileHack', 'false');
-      } else {
-          saveStateForMobileHack('fileOpen', fileLoaded);
-          saveStateForMobileHack('folderOpen', openFolder);
-      }
+      saveStateForMobileHack('isMobileHack', 'false');
+    } else {
+      saveStateForMobileHack('fileOpen', fileLoaded);
+      saveStateForMobileHack('folderOpen', openFolder);
+    }
 
-      props.changeFolder(openFolder);
-      globalStateUpdater("filesDisplayed", folder[openFolder], false);
-      
-  }, [openFolder, fileLoaded]);
+    props.changeFolder(openFolder);
+    globalStateUpdater("filesDisplayed", folder[openFolder], false);
+  }, [
+    // openFolder, 
+    // fileLoaded, 
+    globalStateUpdater, 
+    props, 
+    rehydrateStateFromStorage, 
+    saveStateForMobileHack, 
+    checkStorageForMobileHack, 
+    folder
+  ]);
 
   return (
     <NavWrapper name={"navWrapper"}> 
