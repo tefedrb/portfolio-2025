@@ -5,38 +5,49 @@ import Equipped from './components/folderContents/Equipped';
 import Bookshop from './components/folderContents/Bookshop';
 import About from './components/folderContents/About';
 import Contact from './components/folderContents/Contact';
+import { ContextState } from './context';
 
 export const ProviderValue = () => {
+  const [ openFolder, setOpenFolder ] = useState("About");
+  const changeOpenFolder = useCallback((folder: string) => {
+    console.log({ clicking: "here", folder });
+    setOpenFolder(folder);
+  }, [setOpenFolder]);
+
+  const [ blueScreen, updateBlueScreen ] = useState(false);
+
+  const [ isMobileHack, signalMobileHack ] = useState(false);
+
   const files = useMemo(() => {
     return {
       "equipped.java":
         {
           link: "Equipped",
-      name: "equipped.java",
-      content: <Project component={<Equipped/>}/>
-    },
-  "bookshop-crutch.js":
-    {
-      link: "Bookshop-Crutch",
-      name: "bookshop-crutch.js",
-      content: <Project component={<Bookshop/>}/> 
-    }, 
-    // {
-    //     name: "movie-db.js"
-    // }
-    "about.js":
-      {   
-        link: "About",
-        name: "about.js",
-        content: <Project component={<About/>}/>
-      },
-    "contact.js": 
-      {   
-        link: "Contact",
-        name: "contact.js",
-        content: <Project flexbox={true} component={<Contact/>}/>
-      } 
-      }
+          name: "equipped.java",
+          content: <Project component={<Equipped/>}/>
+        },
+      "bookshop-crutch.js":
+        {
+          link: "Bookshop-Crutch",
+          name: "bookshop-crutch.js",
+          content: <Project component={<Bookshop/>}/> 
+        }, 
+      // {
+      //     name: "movie-db.js"
+      // }
+      "about.js":
+        {   
+          link: "About",
+          name: "about.js",
+          content: <Project component={<About/>}/>
+        },
+      "contact.js": 
+        {   
+          link: "Contact",
+          name: "contact.js",
+          content: <Project flexbox={true} component={<Contact/>}/>
+        } 
+    }
   }, []);
 
   const folder = useMemo(() => {
@@ -47,16 +58,13 @@ export const ProviderValue = () => {
     }
   }, [files]);
 
-  const [ blueScreen, updateBlueScreen ] = useState(false);
-
-  const [ isMobileHack, signalMobileHack ] = useState(false);
-
   interface GlobalState {
     folderLoc: [number, number];
     filesDisplayed: Array<{name: string}>;
     fileLoaded: string;
     monitorPower: boolean;
   }
+
   const [ globalState, setGlobalState ] = useState<GlobalState>({
     folderLoc: [100, 20],
     filesDisplayed: [{name: "about.js"}],
@@ -99,7 +107,7 @@ export const ProviderValue = () => {
     return localStorage.getItem(item);
   }, []);
 
-  const value = useMemo(() => {
+  const value = useMemo((): ContextState => {
     return { 
       globalState, 
       files,
@@ -107,6 +115,8 @@ export const ProviderValue = () => {
       verticalDisplay,
       blueScreen,
       isMobileHack,
+      openFolder,
+      changeOpenFolder,
       globalStateUpdater,
       rehydrateStateFromStorage,
       saveStateForMobileHack,
@@ -122,6 +132,8 @@ export const ProviderValue = () => {
     verticalDisplay, 
     blueScreen, 
     isMobileHack, 
+    openFolder,
+    changeOpenFolder,
     globalStateUpdater, 
     rehydrateStateFromStorage,
     saveStateForMobileHack,

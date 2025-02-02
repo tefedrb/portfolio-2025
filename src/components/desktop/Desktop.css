@@ -1,0 +1,62 @@
+.desktop {
+  position: relative;
+  height: 100%;
+  background-image: url('../../imgs/windows-xp/windowsXPv2.jpg');
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+}
+
+.file {
+  cursor: move;
+  width: 100px;
+  height: 100px;
+  background-color: yellow;
+}
+
+.toolbar {
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  bottom: 0;
+  width: 100%;
+}
+
+.title-bar.toolbar {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  padding: 3px 5px 3px 0px;
+  border-left: 0px;
+  height: 28px;
+}
+
+.start-btn {
+  display: flex;
+  color: white;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 1.2em;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0px 10px 10px 0px;
+  padding: 3.29px;
+  /* border: 1px solid rgb(59,137,33); */
+  border-top: 1px solid rgb(93, 138, 78);
+  width: 100px;
+  height: 100%;
+  background: linear-gradient(180deg,
+    rgb(161, 187, 153),
+    rgb(130, 161, 120) 8%,
+    rgb(75, 175, 42) 40%,
+    rgb(94, 133, 82) 88%,
+    rgb(108, 141, 98) 93%,
+    rgb(75, 175, 42) 95%,
+    rgb(75, 175, 42) 96%,
+    rgb(75, 175, 42)
+  );
+  box-shadow: inset -1px 0px 0px 1px #0000005d;
+  /* background: rgb(59,137,33); */
+}
+
+.start-btn span {
+
+}

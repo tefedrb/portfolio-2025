@@ -1,0 +1,11 @@
+.project-file-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100px;
+}
+
+.project-file-wrap img {
+  padding: 4px;
+  width: 70%;
+}

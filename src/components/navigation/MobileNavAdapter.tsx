@@ -21,6 +21,7 @@ const MobileFilePopUp = styled.div`
 const MobileNavWrapper = styled.div`
   // height: 100%;
   // width: 100%;
+  pointer-events: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -50,10 +51,9 @@ const MobileNavWrapper = styled.div`
 
 interface MobileNavAdapterProps {
   name?: string;
-  changeFolder: (folderName: string) => void;
 }
 
-const MobileNavAdapter: React.FC<MobileNavAdapterProps> = (props) => {
+const MobileNavAdapter: React.FC<MobileNavAdapterProps> = () => {
   const { globalState, globalStateUpdater } = useProfileContext();
   const { filesDisplayed, fileLoaded } = globalState;
 
@@ -71,7 +71,7 @@ const MobileNavAdapter: React.FC<MobileNavAdapterProps> = (props) => {
   return (
     <MobileNavWrapper>
       <MobileFilePopUp>{files()}</MobileFilePopUp>
-      <NavigationPanel changeFolder={props.changeFolder} />
+      <NavigationPanel />
     </MobileNavWrapper>
   );
 };

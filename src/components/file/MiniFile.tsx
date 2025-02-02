@@ -8,11 +8,11 @@ import {
 
 interface MiniFileProps {
   open?: boolean;
-  data?: any;
+  data?: {name: string};
   name?: string;
-  size?: any;
-  mini?: any;
-  foldSize?: any;
+  size?: number;
+  mini: boolean;
+  foldSize?: number;
 }
 
 const MiniFile = (props: MiniFileProps) => {

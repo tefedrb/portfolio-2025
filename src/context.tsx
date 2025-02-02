@@ -27,9 +27,11 @@ export interface ContextState {
       content: JSX.Element;
     }>;
   };
+  openFolder: string;
   verticalDisplay: boolean;
   blueScreen: boolean;
   isMobileHack: boolean;
+  changeOpenFolder: (folder: string) => void;
   globalStateUpdater: GlobalStateUpdater;
   rehydrateStateFromStorage: (item: string) => string | null;
   saveStateForMobileHack: (item: string, value: string | boolean) => void;
@@ -48,9 +50,11 @@ export const defaultState: ContextState = {
   },
   files: {},
   folder: {},
+  openFolder: "About",
   verticalDisplay: false,
   blueScreen: false,
   isMobileHack: false,
+  changeOpenFolder: () => {},
   globalStateUpdater: () => {},
   rehydrateStateFromStorage: () => null,
   saveStateForMobileHack: () => {},

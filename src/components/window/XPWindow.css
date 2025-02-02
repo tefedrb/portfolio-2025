@@ -1,0 +1,15 @@
+.custom-window {
+  height: 100%;
+}
+
+.window-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: calc(100% - 42px);
+}
+
+.inner-window-body {
+  height: 100%;
+  background-color: white;
+}

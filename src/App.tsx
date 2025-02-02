@@ -6,13 +6,15 @@ import { Context, ContextState } from './context';
 
 const App = () => {
   const value = ProviderValue();
-  console.log('value', value);
+  
   return (
-    <Context.Provider value={value as ContextState}>
-      <Monitor>
-        <Home />
-      </Monitor>
-    </Context.Provider>
+    <div onClick={() => console.log('App clicked')} style={{ pointerEvents: 'auto' }}>
+      <Context.Provider value={value as ContextState}>
+        <Monitor>
+          <Home />
+        </Monitor>
+      </Context.Provider>
+    </div>
   );
 };
 

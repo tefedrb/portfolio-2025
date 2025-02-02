@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import MainDisplay from '../mainDisplay/MainDisplay';
 import MobileNavAdapter from '../navigation/MobileNavAdapter';
 import styled, { keyframes } from 'styled-components';
@@ -28,10 +28,11 @@ const HomeWrapper = styled.div<HomeWrapperProps>`
   justify-content: center;
   align-items: center;
   height: 100%;
-  z-index: -1;
+  z-index: 1;
   overflow: hidden;
   grid-area: centerA;
   background-color: rgb(5, 5, 5);
+  pointer-events: auto;
 `;
 
 interface InnerHomeProps {
@@ -47,7 +48,7 @@ const InnerHome = styled.div<InnerHomeProps>`
   margin: 0;
   background-color: rgb(10, 10, 10);
   border-radius: 28px;
-
+  pointer-events: auto;
   // &:after {
   //   top: -100%;
   //   left: -50%;
@@ -76,11 +77,13 @@ const InnerHome = styled.div<InnerHomeProps>`
 const Home = () => {
   const { checkStorageForMobileHack, saveStateForMobileHack, globalState } = useProfileContext();
   const { monitorPower } = globalState;
-  const [openFolder, changeFolder] = useState("About");
   console.log('globalState', globalState);
 
   useEffect(() => {
     console.log("11.11.20 v9");
+    document.addEventListener('keydown', (e) => {
+      console.log('keydown', e);
+    });
 
     if (!checkStorageForMobileHack()) {
       saveStateForMobileHack('isMobileHack', 'false');
@@ -100,11 +103,9 @@ const Home = () => {
     <HomeWrapper className={`container ${monitorPower ? 'addFlicker' : 'none'}`} name={"home wrapper"}>
       <InnerHome className={`screen ${monitorPower ? 'screenOn' : 'screenOff'}`} name={"inner home"}>
         <MobileNavAdapter
-          changeFolder={changeFolder}
           name={"mobileNav"}
         />
         <MainDisplay
-          openFolder={openFolder}
           name={"main display"}
         />
       </InnerHome>

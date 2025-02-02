@@ -4,15 +4,13 @@ import "98.css";
 interface GraphicWrapperProps {
   name?: string;
   mini?: boolean;
-  size?: {
-    height: number;
-  };
+  size?: number;
 }
 
 interface GraphicHeadWrapperProps {
   name?: string;
   mini?: boolean;
-  foldSize?: string;
+  foldSize?: number | string;
 }
 
 interface GraphicHeadProps {
@@ -23,7 +21,7 @@ interface GraphicHeadProps {
 interface GraphicFoldProps {
   name?: string;
   mini?: boolean;
-  foldSize?: string;
+  foldSize?: number | string;
   dynamicHeight?: number;
 }
 
@@ -36,7 +34,7 @@ interface GraphicBodyProps {
 interface OpenFileDisplayProps {
   children: React.ReactNode;
   name?: string;
-  size?: { width: string; height: string };
+  size?: number | string;
 }
 
 export const GraphicWrapper = styled.div<GraphicWrapperProps>`
@@ -45,7 +43,7 @@ export const GraphicWrapper = styled.div<GraphicWrapperProps>`
   max-width: 900px;
   height: ${(props) => (props.mini ? "auto" : "95%")};
   margin-bottom: ${(props) =>
-    props.mini ? 35 : (props.size && props.size.height <= 35 ? "0" : "20px")};
+    props.mini ? 35 : (props.size as number) <= 35 ? "0" : "20px"};
   margin-top: ${(props) => (props.mini ? "0" : "20px")};
   @media (max-width: 948px) {
     width: ${(props) => (props.mini ? "20px" : "90%")};
@@ -137,19 +135,19 @@ export const GraphicBody2 = styled.div<GraphicBodyProps>`
 `;
 
 export const OpenFileDisplay: React.FC<OpenFileDisplayProps> = (props) => {
-    return (
-        <div style={{height: "90%", width: "90%"}} className="window">
-            <div className="title-bar">
-                <div className="title-bar-text">Counter</div>
-                <div className="title-bar-controls">
-                    <button aria-label="Minimize" />
-                    <button aria-label="Maximize" />
-                    <button aria-label="Close" />
-                </div>
-            </div>
-            <GraphicBody2>
-                {props.children}
-            </GraphicBody2>
-        </div>
-    )
+  return (
+    <div style={{height: "90%", width: "90%"}} className="window">
+      <div className="title-bar">
+          <div className="title-bar-text">Counter</div>
+          <div className="title-bar-controls">
+            <button aria-label="Minimize" />
+            <button aria-label="Maximize" />
+            <button aria-label="Close" />
+          </div>
+      </div>
+      <GraphicBody2>
+        {props.children}
+      </GraphicBody2>
+    </div>
+  )
 }

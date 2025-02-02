@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import Folder from '../folder/Folder';
 import styled from 'styled-components';
 import { useProfileContext } from '../../useProfileContext';
@@ -9,6 +9,7 @@ interface NavWrapperProps {
 
 const NavWrapper = styled.nav<NavWrapperProps>`
   pointer-events: auto;
+  z-index: 9;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -31,23 +32,21 @@ const NavWrapper = styled.nav<NavWrapperProps>`
   }
 `
 
-interface NavigationPanelProps {
-  changeFolder: (folder: string) => void;
-}
-
-const NavigationPanel = (props: NavigationPanelProps) => {
-  const [ openFolder, changeOpenFolder ] = useState("About");
+const NavigationPanel = () => {
   const { 
     folder, 
     saveStateForMobileHack, 
     rehydrateStateFromStorage, 
     checkStorageForMobileHack, 
     globalState, 
-    globalStateUpdater 
+    globalStateUpdater,
+    changeOpenFolder,
+    openFolder
   } = useProfileContext();
   const { fileLoaded } = globalState;
 
   useEffect(() => {
+    console.log('NavigationPanel', openFolder);
 
     /* TODO: Create a centralized function in context that has all the switches
         and updates in it's own state - this function will rehydrate all the 
@@ -64,13 +63,13 @@ const NavigationPanel = (props: NavigationPanelProps) => {
       saveStateForMobileHack('folderOpen', openFolder);
     }
 
-    props.changeFolder(openFolder);
-    globalStateUpdater("filesDisplayed", folder[openFolder], false);
+    changeOpenFolder(openFolder);
+    // globalStateUpdater("filesDisplayed", folder[openFolder], false);
   }, [
-    // openFolder, 
-    // fileLoaded, 
+    openFolder,
+    changeOpenFolder,
+    fileLoaded, 
     globalStateUpdater, 
-    props, 
     rehydrateStateFromStorage, 
     saveStateForMobileHack, 
     checkStorageForMobileHack, 

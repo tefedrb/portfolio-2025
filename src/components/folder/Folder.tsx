@@ -21,6 +21,8 @@ const FolderWrapper = styled.div<StyledComponentProps>`
   width: 55%;
   height: 100%;
   margin-right: 18%;
+  pointer-events: auto;
+  z-index: 10;
   // ADJUSTING FOR MOBILE VIEW 
   @media (max-width: 948px) and (min-height: 500px){
     width: auto;
@@ -45,6 +47,9 @@ const FolderInnerWrap = styled.div<StyledComponentProps>`
   position: relative;
   height: 100px;
   width: 75px;
+  pointer-events: auto;
+  z-index: 11;
+  cursor: pointer;
   &:hover {
     cursor: pointer;
   }
@@ -85,6 +90,8 @@ const FolderFront = styled.div<FolderFrontProps>`
   justify-content: center;
   height: 80%;
   bottom: 0;
+  pointer-events: auto;
+  z-index: 12;
   box-shadow: 1px -5px 8px -7px rgba(216,212,79,1);
   left: ${props => props?.toggle?.folderFront?.left || "10%"};
   width: 100%;
@@ -119,6 +126,8 @@ const Folder: React.FC<FolderProps> = (props) => {
   const { verticalDisplay } = useProfileContext();
   
   const handleClick = () => {
+    console.log('Folder clicked:', props.title);
+    console.log('Current openFolder state:', openFolder);
     if (!openFolder) {
       toggleState(prevState => !prevState);
       props.changeOpenFolder(props.title);
@@ -160,18 +169,34 @@ const Folder: React.FC<FolderProps> = (props) => {
   };
 
   return (  
-    <FolderWrapper name={"folderWrap"}>
-      <FolderInnerWrap id="innerWrap" 
+    <FolderWrapper 
+      name={"folderWrap"}
+      onClick={(e) => {
+        console.log('FolderWrapper clicked');
+        e.stopPropagation();
+      }}
+    >
+      <FolderInnerWrap 
+        id="innerWrap" 
         ref={folderNode} 
         name={"folderInnerWrap"} 
-        onClick={handleClick}
+        onClick={(e) => {
+          console.log('FolderInnerWrap clicked');
+          e.stopPropagation();
+          handleClick();
+        }}
       >
         <FolderTab name={"tab"}/>
         <FolderBack name={"folder back"}/>
         <Paper name={"paper"} toggle={styledCompProps}/>
-        <FolderFront id="folderFront" 
+        <FolderFront 
+          id="folderFront" 
           name={"folder front"} 
           toggle={styledCompProps}
+          onClick={(e) => {
+            console.log('FolderFront clicked');
+            e.stopPropagation();
+          }}
         >
           <Contents>{props.title}</Contents>
         </FolderFront>
