@@ -42,7 +42,7 @@ const Monitor = (props: MonitorProps) => {
         <div className="bottomEdge"></div>
       </div>
       <div className="monitorBottom">
-        <p className="logo">PONY</p>
+        <p className="logo">TB</p>
         <div className={`on-indicator ${monitorPower ? "none" : "off-indicator"}`}></div>
         <div onClick={powerHandler} className="power-button">
           <img

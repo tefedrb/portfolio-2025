@@ -4,26 +4,26 @@ import ProjectFile from "../file/ProjectFile";
 
 
 export interface RenderFilesProps {
-  files?: {
-    img: string;
-    title: string;
-  }[];
+  img: string;
+  title: string;
 }
 
-const renderFiles = (files: RenderFilesProps) => {
-  return (files && files.files && files.files.length > 0) ? 
-    files.files.map((file, key) => <ProjectFile img={file.img} title={file.title} key={key} />) : null;
+const renderFiles = (files: { img: string, title: string }[]) => {
+  console.log({ files }, "<--- files")
+  return (files && files.length > 0) ? 
+    files.map((file, key) => <ProjectFile img={file.img} title={file.title} key={key} />) : null;
 }
 
 export interface WindowProps {
   data: {
     name: string;
-    files: RenderFilesProps;
+    files: RenderFilesProps[];
   };
   close: (name: string) => void;
 }
 
 const Window = ({ data, close }: WindowProps) => {
+  console.log({ data }, "<--- data")
   return (
     // find the middle of the screen and minus half the windows height & width to find the xy
     <Rnd

@@ -1,6 +1,7 @@
 import './RecycleBin.css';
 import Draggable from 'react-draggable';
-import recycle from '../../assets/icons/recycle.png'
+import recycle from '/windows-xp/user-trash-full-xp.svg'
+import { useRef } from 'react';
 
 interface RecycleBinProps {
   desktopInfo: {
@@ -9,7 +10,8 @@ interface RecycleBinProps {
   } | null | undefined;
 }
 
-const RecycleBin = ({ desktopInfo }: RecycleBinProps) => { 
+const NewRecycleBin = ({ desktopInfo }: RecycleBinProps) => { 
+  const nodeRef = useRef(null);
   return (
     <Draggable
       bounds={'parent'} 
@@ -20,21 +22,14 @@ const RecycleBin = ({ desktopInfo }: RecycleBinProps) => {
         y: desktopInfo?.clientHeight ? 
           desktopInfo?.clientHeight - 155 : 0
       }}
+      nodeRef={nodeRef}
     > 
-      <div className="outer-can-container">
-        <div className="can-container">
-          <div id="recycle-can">
-            <div className="top-side-can"></div>
-            <div className="left-side-can">
-              <img src={recycle} />
-            </div>
-            <div className="right-side-can"></div>
-          </div>
-        </div>
-        <span>Recycle Bin</span>
+      <div className="recycle-bin-container" ref={nodeRef}>
+        <img src={recycle} />
+        <label>Recycle Bin</label>
       </div>
     </Draggable>
   );
 }
 
-export default RecycleBin;
+export default NewRecycleBin;

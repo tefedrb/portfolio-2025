@@ -3,6 +3,7 @@ import { useDoubleClick } from "../hooks/hooks";
 import { isMobile } from "react-device-detect";
 import styled from "styled-components";
 import Draggable from 'react-draggable'; 
+import { UnknownObject } from "../../types/globalTypes";
 // import { Context } from '../context';
 // 3D space pinball Space Cadet
 
@@ -147,10 +148,13 @@ const SmScrnContents = styled.p<SmScrnContentsProps>`
 
 interface FolderProps {
   title: string;
-  files: string[];
+  files: UnknownObject[];
   windowIsClosed: boolean;
   defaultPos: { x: number; y: number };
-  addWindow: (title: string, files: string[]) => void;
+  addWindow: ({ key, data }: {
+    key: string;
+    data: UnknownObject[];
+  }) => void;
 }
 
 interface StyledCompProps {
@@ -171,7 +175,7 @@ const XPFolder = (props: FolderProps) => {
   function handleClick(){
     if(props.windowIsClosed){
       console.log(props.files, "<---files")
-      props.addWindow(props.title, props.files || []);
+      props.addWindow({ key: props.title, data: props.files });
     }
   };
 

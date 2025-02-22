@@ -4,18 +4,18 @@
   /* overflow: hidden; */
   pointer-events: auto;
   background-color: transparent;
-  height: 100%;
-  width: 100%;
+  height: 100vh;
+  width: 100vw;
   z-index: 1;
   display: grid;
   grid-template-columns: 3% 10px 1fr 10px 3%;
   grid-template-rows: 6% 10px 1fr 10px 6%;
   grid-template-areas: 
-      "topA topA topA topA topA"
-      "monLeft tEdge tEdge tEdge monRight"
-      "monLeft lEdge centerA rEdge monRight"
-      "monLeft bEdge bEdge bEdge monRight"
-      "bottomA bottomA bottomA bottomA bottomA"
+    "topA topA topA topA topA"
+    "monLeft tEdge tEdge tEdge monRight"
+    "monLeft lEdge centerA rEdge monRight"
+    "monLeft bEdge bEdge bEdge monRight"
+    "bottomA bottomA bottomA bottomA bottomA"
   ;
 }
 

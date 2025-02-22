@@ -1,7 +1,7 @@
 .desktop {
   position: relative;
   height: 100%;
-  background-image: url('../../imgs/windows-xp/windowsXPv2.jpg');
+  background-image: url('/windows-xp/windowsXPv2.jpg');
   background-size: cover;
   background-position: center;
   overflow: hidden;

@@ -1,10 +1,10 @@
 import { useState, useEffect, useRef, MutableRefObject } from 'react';
 import './Desktop.css';
-import XPFolder from '../folder/XPFolder';
 import Window, { RenderFilesProps } from '../window/XPWindow';
-import RecycleBin from '../recycle/RecycleBin';
-import { projectData } from '../file/projectFileData';
+import { projectFiles } from '../file/projectFileData';
 import { UnknownObject } from '../../types/globalTypes';
+import NewXPFolder from '../folder/NewXPFolder';
+import NewRecycleBin from '../recycle/NewRecycleBin';
 const Desktop = () => {
   // Create functionality for opening and closing windows
   const [allOpenWindows, updateWindows] = useState<UnknownObject>({});
@@ -13,13 +13,12 @@ const Desktop = () => {
   const desktopRef = useRef();
 
   useEffect(() => {
-    console.log(desktopRef, "<--- cur")
     updateDesktopInfo(desktopRef);
   }, [desktopRef]);
 
-  const addWindow = (key: string, data: UnknownObject) => {
+  const addWindow = ({ key, data }: { key: string, data: UnknownObject[] }) => {
     updateWindows(prevState => {
-      data.name = key;
+      // data.name = key;
       return {...prevState, [key]: data}
     });
   }
@@ -32,40 +31,62 @@ const Desktop = () => {
     });
   }
 
-  interface WindowUnknown {
-    name: string; 
-    files: RenderFilesProps;
-  }
-
   const renderWindows = () => {
+    console.log({ allOpenWindows }, "<--- allOpenWindows")
+    const windowTitle = Object.keys(allOpenWindows);
     return Object
       .values(allOpenWindows)
-      .map((win, idx) => <Window close={closeWindow} data={win as WindowUnknown} key={idx} />);
+      .map((files, idx ) => 
+        <Window close={closeWindow} data={{ name: windowTitle[idx], files: files as RenderFilesProps[] }} key={idx} />
+      );
   };
 
   return (
     <div ref={desktopRef as unknown as React.RefObject<HTMLDivElement>} className="desktop">
-      <XPFolder
-        addWindow={(title: string, files: string[]) => addWindow(title, files)} 
+      <NewXPFolder
+        addWindow={addWindow}
         windowIsClosed={allOpenWindows["About"] ? false : true} 
         defaultPos={{x: 20, y: 20}}
-        title={"About"} 
         files={[]}
+        title={"About"} 
+        img={"/windows-xp/File.ico"}
+        alt={"about file"}
       />
-      <XPFolder 
+       <NewXPFolder
         addWindow={addWindow}
         windowIsClosed={allOpenWindows["Projects"] ? false : true} 
         defaultPos={{x: 20, y: 40}}
-        files={projectData}
+        files={projectFiles}
+        title={"Contact"} 
+        img={"/windows-xp/File.ico"}
+        alt={"contact file"}
+      />
+      <NewXPFolder
+        addWindow={addWindow}
+        windowIsClosed={allOpenWindows["Projects"] ? false : true} 
+        defaultPos={{x: 20, y: 40}}
+        files={projectFiles}
+        title={"Projects"} 
+        img={"/windows-xp/FolderClosed.ico"}
+        alt={"/windows-xp/FolderClosed.ico"}
+      />
+      
+      {/* <XPFolder 
+        addWindow={addWindow}
+        windowIsClosed={allOpenWindows["Projects"] ? false : true} 
+        defaultPos={{x: 20, y: 40}}
+        files={projectFiles}
         title={"Projects"} 
       />
+
       <XPFolder 
         addWindow={addWindow}
         windowIsClosed={allOpenWindows["Contact"] ? false : true} 
         defaultPos={{x: 20, y: 60}} 
         title={"Contact"} 
-      />
-      {desktopInfo ? <RecycleBin desktopInfo={desktopInfo.current} /> : null}
+        files={[]}
+      /> */}
+      {desktopInfo ? <NewRecycleBin desktopInfo={desktopInfo.current} /> : null}
       {renderWindows()}
       <div className="title-bar toolbar">
         <div className="start-btn">

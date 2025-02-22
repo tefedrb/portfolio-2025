@@ -16,6 +16,7 @@
     "react-dom": "^18.3.1",
     "react-draggable": "^4.4.6",
     "react-rnd": "^10.4.14",
+    "reset-css": "^5.0.2",
     "styled-components": "^6.1.14",
     "xp.css": "^0.2.6"
   },

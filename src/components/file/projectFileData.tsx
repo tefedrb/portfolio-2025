@@ -3,7 +3,7 @@ import popcorn from '../../assets/icons/popcorn.png';
 import bookshop from '../../assets/icons/bookshop-crutch-file.png';
 import mobilize from '../../assets/icons/mobilize.png';
 
-export const projectData = [
+export const projectFiles = [
   {
     title: "Equipped",
     img: equipped,
