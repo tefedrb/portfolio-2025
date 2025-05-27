@@ -6,55 +6,56 @@ import {useState, useCallback, useRef, useEffect} from 'react';
 */
 export const useDoubleClick = (callback: () => void, eventType: string) => {
   /** callback ref Pattern **/
-  const [elem, setElem] = useState<HTMLElement | null>(null)
+  const [elem, setElem] = useState<HTMLElement | null>(null);
   
   const callbackRef = useCallback((node: HTMLElement | null) => {
     if (node !== null) {
-      setElem(node)
+      setElem(node);
     }
   }, []);
 
-  const countRef = useRef(0)
+  const countRef = useRef(0);
 /** Refs for the timer **/
-  const timerRef = useRef<number | undefined>(undefined)
-/**Input callback Ref for callback passed **/
-  const inputCallbackRef = useRef<(() => void) | null>(null)
+  const timerRef = useRef<number | undefined>(undefined);
+/** Input callback Ref for callback passed **/
+  const inputCallbackRef = useRef<(() => void) | null>(null);
   
   useEffect(() => {
-    inputCallbackRef.current = callback
-  }, [callback])
+    inputCallbackRef.current = callback;
+  }, [callback]);
   
   useEffect(() => {
     function handler() {
-      const isDoubleClick = countRef.current + 1 === 2
-      const timerIsPresent = timerRef.current
+      const isDoubleClick = countRef.current + 1 === 2;
+      // console.log({ current: countRef.current})
+      const timerIsPresent = timerRef.current;
       if (timerIsPresent && isDoubleClick) {
-        clearTimeout(timerRef.current)
+        clearTimeout(timerRef.current);
         timerRef.current = undefined;
         countRef.current = 0;
         if (inputCallbackRef.current) {
-          inputCallbackRef.current()
+          inputCallbackRef.current();
         }
       }
       if (!timerIsPresent) {
-        countRef.current = countRef.current + 1
+        countRef.current = countRef.current + 1;
         const timer = setTimeout(() => {
-          clearTimeout(timerRef.current)
+          clearTimeout(timerRef.current);
           timerRef.current = undefined;
           countRef.current = 0;
-        }, 200)
-        timerRef.current = timer
+        }, 200);
+        timerRef.current = timer;
       }
     }
     if (elem) {
-      elem.addEventListener(eventType, handler)
+      elem.addEventListener(eventType, handler);
     }
-  return () => {
+    return () => {
       if (elem) {
-        elem.removeEventListener(eventType, handler)
+        elem.removeEventListener(eventType, handler);
       }
     }
-  }, [elem, eventType])
+  }, [elem, eventType]);
   // [callbackRef, elem]
-  return [callbackRef]
+  return [callbackRef];
 }

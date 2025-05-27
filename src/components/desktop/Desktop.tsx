@@ -4,7 +4,9 @@ import Window, { RenderFilesProps } from '../window/XPWindow';
 import { projectFiles } from '../file/projectFileData';
 import { UnknownObject } from '../../types/globalTypes';
 import NewXPFolder from '../folder/NewXPFolder';
-import NewRecycleBin from '../recycle/NewRecycleBin';
+import  NewRecycleBin from '../recycle/NewRecycleBin';
+import { FOLDER_OPEN_PATH, FOLDER_CLOSED_PATH, FILE_ICON_PATH } from '../constants/icon-file-paths';
+
 const Desktop = () => {
   // Create functionality for opening and closing windows
   const [allOpenWindows, updateWindows] = useState<UnknownObject>({});
@@ -49,7 +51,7 @@ const Desktop = () => {
         defaultPos={{x: 20, y: 20}}
         files={[]}
         title={"About"} 
-        img={"/windows-xp/File.ico"}
+        img={FILE_ICON_PATH}
         alt={"about file"}
       />
        <NewXPFolder
@@ -58,17 +60,26 @@ const Desktop = () => {
         defaultPos={{x: 20, y: 40}}
         files={projectFiles}
         title={"Contact"} 
-        img={"/windows-xp/File.ico"}
+        img={FILE_ICON_PATH}
         alt={"contact file"}
       />
       <NewXPFolder
         addWindow={addWindow}
         windowIsClosed={allOpenWindows["Projects"] ? false : true} 
-        defaultPos={{x: 20, y: 40}}
+        defaultPos={{x: 20, y: 60}}
+        files={projectFiles}
+        title={"Projects"}
+        img={FOLDER_CLOSED_PATH}
+        alt={FOLDER_CLOSED_PATH}
+      />
+      <NewXPFolder
+        addWindow={addWindow}
+        windowIsClosed={allOpenWindows["Projects"] ? false : true} 
+        defaultPos={{x: 20, y: 80}}
         files={projectFiles}
         title={"Projects"} 
-        img={"/windows-xp/FolderClosed.ico"}
-        alt={"/windows-xp/FolderClosed.ico"}
+        img={FOLDER_OPEN_PATH}
+        alt={FOLDER_OPEN_PATH}
       />
       
       {/* <XPFolder 

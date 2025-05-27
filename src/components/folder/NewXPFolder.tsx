@@ -50,7 +50,7 @@ interface FolderProps {
   }) => void;
 }
 
-const XPFolder = (props: FolderProps) => {
+const NewXPFolder = (props: FolderProps) => {
   const [ doubleTouchCallback ] = useDoubleClick(handleClick, isMobile ? 'touchstart' : 'click');
 
   function handleClick(){
@@ -60,15 +60,16 @@ const XPFolder = (props: FolderProps) => {
   };
 
   return (
-		<Draggable 
+		<Draggable
       bounds={'parent'} 
-      defaultPosition={props.defaultPos}>
+      defaultPosition={props.defaultPos}
+    >
 			<FolderWrapper ref={doubleTouchCallback} name={"folderWrSap"}>
-        <img src={props.img} alt={props.title} />
+        <img draggable={false} src={props.img} alt={props.title} />
         <label>{props.title}</label>
 			</FolderWrapper>
 		</Draggable>
   );
 };
 
-export default XPFolder;
+export default NewXPFolder;

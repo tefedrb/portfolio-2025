@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import Folder from '../folder/Folder';
 import styled from 'styled-components';
 import { useProfileContext } from '../../useProfileContext';
+import { FOLDER_OPEN_ICON } from '../constants/icon-file-paths';
 
 interface NavWrapperProps {
   name?: string;
@@ -55,12 +56,12 @@ const NavigationPanel = () => {
     if(checkStorageForMobileHack()){
       console.log('checkStorageForMobileHack', checkStorageForMobileHack());
       globalStateUpdater("fileLoaded", rehydrateStateFromStorage('fileOpen') as string, false);
-      changeOpenFolder(rehydrateStateFromStorage('folderOpen') as string);
+      changeOpenFolder(rehydrateStateFromStorage(FOLDER_OPEN_ICON) as string);
 
       saveStateForMobileHack('isMobileHack', 'false');
     } else {
       saveStateForMobileHack('fileOpen', fileLoaded);
-      saveStateForMobileHack('folderOpen', openFolder);
+      saveStateForMobileHack(FOLDER_OPEN_ICON, openFolder);
     }
 
     changeOpenFolder(openFolder);
