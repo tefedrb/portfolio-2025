@@ -34,14 +34,14 @@ const NewRecycleBin = ({ desktopInfo }: RecycleBinProps) => {
   useEffect(() => {
     const x = desktopInfo?.clientWidth || 0;
     const y = desktopInfo?.clientHeight || 0;
-    setPosition({ x: x - 100, y: y - 365 });
+    setPosition({ x: x - 100, y: y - 420 });
   }, [desktopInfo]);
 
   useEffect(() => {
     const handleResize = () => {
       const x = desktopInfo?.clientWidth || 0;
       const y = desktopInfo?.clientHeight || 0;
-      setPosition({ x: x - 100, y: y - 365 });
+      setPosition({ x: x - 100, y: y - 420 });
     }
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);

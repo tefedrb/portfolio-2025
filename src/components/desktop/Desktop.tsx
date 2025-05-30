@@ -5,7 +5,7 @@ import { projectFiles } from '../file/projectFileData';
 import { UnknownObject } from '../../types/globalTypes';
 import NewXPFolder from '../folder/NewXPFolder';
 import  NewRecycleBin from '../recycle/NewRecycleBin';
-import { FOLDER_CLOSED_PATH, FILE_ICON_PATH } from '../constants/icon-file-paths';
+import { FILE_ICON_PATH } from '../constants/icon-file-paths';
 import Clock from '../clock/Clock';
 import Start from '../start/Start';
 
@@ -70,8 +70,6 @@ const Desktop = () => {
         defaultPos={{x: 20, y: 60}}
         files={projectFiles}
         title={"Projects"}
-        img={FOLDER_CLOSED_PATH}
-        alt={FOLDER_CLOSED_PATH}
       />
       {desktopInfo ? <NewRecycleBin desktopInfo={desktopInfo.current} /> : null}
       {renderWindows()}

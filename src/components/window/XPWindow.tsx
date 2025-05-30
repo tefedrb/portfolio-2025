@@ -23,7 +23,6 @@ export interface WindowProps {
 }
 
 const Window = ({ data, close }: WindowProps) => {
-  console.log({ data }, "<--- data")
   return (
     // find the middle of the screen and minus half the windows height & width to find the xy
     <Rnd

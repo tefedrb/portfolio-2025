@@ -3,6 +3,7 @@ import { isMobile } from "react-device-detect";
 import styled from "styled-components";
 import Draggable from 'react-draggable'; 
 import { UnknownObject } from "../../types/globalTypes";
+import { FOLDER_CLOSED_PATH, FOLDER_OPEN_PATH } from "../constants/icon-file-paths";
 
 interface FolderWrapperProps {
   name: string;
@@ -42,8 +43,8 @@ interface FolderProps {
   files: UnknownObject[];
   windowIsClosed: boolean;
   defaultPos: { x: number; y: number };
-  img: string;
-  alt: string;
+  img?: string;
+  alt?: string;
   addWindow: ({ key, data }: {
     key: string;
     data: UnknownObject[];
@@ -52,6 +53,8 @@ interface FolderProps {
 
 const NewXPFolder = (props: FolderProps) => {
   const [ doubleTouchCallback ] = useDoubleClick(handleClick, isMobile ? 'touchstart' : 'click');
+
+  const img = props.windowIsClosed ? FOLDER_CLOSED_PATH : FOLDER_OPEN_PATH;
 
   function handleClick(){
     if(props.windowIsClosed){
@@ -65,7 +68,7 @@ const NewXPFolder = (props: FolderProps) => {
       defaultPosition={props.defaultPos}
     >
 			<FolderWrapper ref={doubleTouchCallback} name={"folderWrSap"}>
-        <img draggable={false} src={props.img} alt={props.title} />
+        <img draggable={false} src={props.img ? props.img : img} alt={props.title} />
         <label>{props.title}</label>
 			</FolderWrapper>
 		</Draggable>
