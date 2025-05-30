@@ -46,6 +46,7 @@ const Window = ({ data, close }: WindowProps) => {
               onTouchStart={() => close ? close(data.name) : null}
               onClick={() => close ? close(data.name) : null}  aria-label="Close"
             >
+              <img src="/windows-xp-remix/close.png" alt="Close" />
             </button>
           </div>
         </div>

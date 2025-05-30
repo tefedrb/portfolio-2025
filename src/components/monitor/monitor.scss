@@ -215,3 +215,12 @@ $powerColor:rgb(227,219,188);
   border-right: 10px solid transparent;
   box-sizing: border-box;
 }
+
+.version {
+  grid-column-start: 1;
+  grid-row-start: 1;
+  justify-self: flex-start;
+  margin-left: 5em;
+  color: #755D4F;
+  font-size: .8em;
+} 

@@ -5,7 +5,9 @@ import { projectFiles } from '../file/projectFileData';
 import { UnknownObject } from '../../types/globalTypes';
 import NewXPFolder from '../folder/NewXPFolder';
 import  NewRecycleBin from '../recycle/NewRecycleBin';
-import { FOLDER_OPEN_PATH, FOLDER_CLOSED_PATH, FILE_ICON_PATH } from '../constants/icon-file-paths';
+import { FOLDER_CLOSED_PATH, FILE_ICON_PATH } from '../constants/icon-file-paths';
+import Clock from '../clock/Clock';
+import Start from '../start/Start';
 
 const Desktop = () => {
   // Create functionality for opening and closing windows
@@ -34,7 +36,6 @@ const Desktop = () => {
   }
 
   const renderWindows = () => {
-    console.log({ allOpenWindows }, "<--- allOpenWindows")
     const windowTitle = Object.keys(allOpenWindows);
     return Object
       .values(allOpenWindows)
@@ -50,7 +51,7 @@ const Desktop = () => {
         windowIsClosed={allOpenWindows["About"] ? false : true} 
         defaultPos={{x: 20, y: 20}}
         files={[]}
-        title={"About"} 
+        title={"About.txt"} 
         img={FILE_ICON_PATH}
         alt={"about file"}
       />
@@ -59,7 +60,7 @@ const Desktop = () => {
         windowIsClosed={allOpenWindows["Projects"] ? false : true} 
         defaultPos={{x: 20, y: 40}}
         files={projectFiles}
-        title={"Contact"} 
+        title={"Contact.txt"} 
         img={FILE_ICON_PATH}
         alt={"contact file"}
       />
@@ -72,37 +73,11 @@ const Desktop = () => {
         img={FOLDER_CLOSED_PATH}
         alt={FOLDER_CLOSED_PATH}
       />
-      <NewXPFolder
-        addWindow={addWindow}
-        windowIsClosed={allOpenWindows["Projects"] ? false : true} 
-        defaultPos={{x: 20, y: 80}}
-        files={projectFiles}
-        title={"Projects"} 
-        img={FOLDER_OPEN_PATH}
-        alt={FOLDER_OPEN_PATH}
-      />
-      
-      {/* <XPFolder 
-        addWindow={addWindow}
-        windowIsClosed={allOpenWindows["Projects"] ? false : true} 
-        defaultPos={{x: 20, y: 40}}
-        files={projectFiles}
-        title={"Projects"} 
-      />
-
-      <XPFolder 
-        addWindow={addWindow}
-        windowIsClosed={allOpenWindows["Contact"] ? false : true} 
-        defaultPos={{x: 20, y: 60}} 
-        title={"Contact"} 
-        files={[]}
-      /> */}
       {desktopInfo ? <NewRecycleBin desktopInfo={desktopInfo.current} /> : null}
       {renderWindows()}
       <div className="title-bar toolbar">
-        <div className="start-btn">
-          <span>Start</span>
-        </div>
+        <Start />
+        <Clock />
       </div>
     </div>
   );

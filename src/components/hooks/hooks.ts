@@ -27,7 +27,6 @@ export const useDoubleClick = (callback: () => void, eventType: string) => {
   useEffect(() => {
     function handler() {
       const isDoubleClick = countRef.current + 1 === 2;
-      // console.log({ current: countRef.current})
       const timerIsPresent = timerRef.current;
       if (timerIsPresent && isDoubleClick) {
         clearTimeout(timerRef.current);

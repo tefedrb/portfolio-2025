@@ -1,7 +1,7 @@
 import './RecycleBin.css';
-import Draggable from 'react-draggable';
+import Draggable, { DraggableData } from 'react-draggable';
 import recycle from '/windows-xp-remix/recyclingBinRemix2Web.webp'
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 
 interface RecycleBinProps {
@@ -25,18 +25,35 @@ const RecycleBinWrapper = styled.div`
 
 const NewRecycleBin = ({ desktopInfo }: RecycleBinProps) => { 
   const nodeRef = useRef(null);
-  console.log({ desktopInfo, width: desktopInfo?.clientWidth, height: desktopInfo?.clientHeight });
+  const [position, setPosition] = useState({ x: desktopInfo?.clientWidth || 0, y: desktopInfo?.clientHeight || 0 });
+
+  const handleDrag = (e: unknown, data: DraggableData) => {
+    setPosition({ x: data.x, y: data.y });
+  }
+
+  useEffect(() => {
+    const x = desktopInfo?.clientWidth || 0;
+    const y = desktopInfo?.clientHeight || 0;
+    setPosition({ x: x - 100, y: y - 365 });
+  }, [desktopInfo]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      const x = desktopInfo?.clientWidth || 0;
+      const y = desktopInfo?.clientHeight || 0;
+      setPosition({ x: x - 100, y: y - 365 });
+    }
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [desktopInfo]);
+
+
   return (
     <Draggable
       bounds={'parent'} 
-      // 105 and 155 are the offset needed for a solid view of the bin - should change this
-      defaultPosition={{ 
-        x: desktopInfo?.clientWidth ? 
-          desktopInfo?.clientWidth - 100: 0, 
-        y: desktopInfo?.clientHeight ? 
-          desktopInfo?.clientHeight - 475 : 0
-      }}
-      // defaultPosition={{ x: 20, y: 200 }}
+      position={position ?? undefined}
+      onStop={(_, data) => setPosition({ x: data.x, y: data.y })}
+      onDrag={handleDrag}
       nodeRef={nodeRef}
     > 
       <RecycleBinWrapper className="recycle-bin-container" ref={nodeRef}>
