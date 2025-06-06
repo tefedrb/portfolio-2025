@@ -6,10 +6,69 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  height: calc(100% - 42px);
+  /* height: calc(100% - 42px); */
+  box-shadow: 0px 1px 3px black;
+  height: 100%;
 }
 
 .inner-window-body {
   height: 100%;
   background-color: white;
+}
+
+.title-bar {
+  /* box-shadow: 0px 1px 3px black; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: inset 0 .2em .3em #a9bdea, inset 0 -0.1em .3em #799bec, 0px 1px 3px black;
+  border-left: 0px;
+  height: 35px;
+  background-color: #92AEEE;
+  border-top-color: #a9bdea;
+  border-top-style: solid;
+}
+
+.title-bar-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding-left: 0.5rem;
+}
+
+.title-bar-header img {
+  width: 1.50rem;
+  height: 1.50rem;
+}
+
+.title-bar-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 6rem;
+  height: 1.50rem;
+}
+
+.title-bar-controls button {
+  font-size: 0;
+  border-radius: 0px;
+  background-color: transparent;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 1.60rem;
+  width: 1.60rem;
+}
+
+.minimize {
+  background-image: url('/windows-xp-remix/window-control-icons/minimize-button-sml2.png');
+
+}
+
+.maximize {
+  background-image: url('/windows-xp-remix/window-control-icons/maximize-button-updated-sml.png');
+}
+
+.close {
+  background-image: url('/windows-xp-remix/window-control-icons/close-button-updated-sm.png');
 }

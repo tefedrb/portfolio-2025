@@ -37,16 +37,18 @@ const Window = ({ data, close }: WindowProps) => {
     >
       <div className="window custom-window">
         <div className="title-bar">
-          <div className="title-bar-text">{data.name}</div>
+          <div className="title-bar-header">
+            <img src="/windows-xp-remix/folderClosedRemixWeb.webp" alt="Window Icon" className="window-icon" />
+            <div className="title-bar-text">{data.name}</div>
+          </div>
           <div className="title-bar-controls">
-            <button aria-label="Minimize"></button>
-            <button aria-label="Maximize"></button>
+            <button className="minimize" aria-label="Minimize"></button>
+            <button className="maximize" aria-label="Maximize"></button>
             <button 
+              className="close"
               onTouchStart={() => close ? close(data.name) : null}
               onClick={() => close ? close(data.name) : null}  aria-label="Close"
-            >
-              <img src="/windows-xp-remix/close.png" alt="Close" />
-            </button>
+            />
           </div>
         </div>
         <div className="window-body">

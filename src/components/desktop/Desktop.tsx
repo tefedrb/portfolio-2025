@@ -6,8 +6,7 @@ import { UnknownObject } from '../../types/globalTypes';
 import NewXPFolder from '../folder/NewXPFolder';
 import  NewRecycleBin from '../recycle/NewRecycleBin';
 import { FILE_ICON_PATH } from '../constants/icon-file-paths';
-import Clock from '../clock/Clock';
-import Start from '../start/Start';
+import Taskbar from '../taskbar/taskbar';
 
 const Desktop = () => {
   // Create functionality for opening and closing windows
@@ -73,10 +72,7 @@ const Desktop = () => {
       />
       {desktopInfo ? <NewRecycleBin desktopInfo={desktopInfo.current} /> : null}
       {renderWindows()}
-      <div className="title-bar toolbar">
-        <Start />
-        <Clock />
-      </div>
+      <Taskbar />
     </div>
   );
 }

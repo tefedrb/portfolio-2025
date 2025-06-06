@@ -1,3 +1,6 @@
+import '../taskbar.css';
+
+
 const Start = () => {
   return (
     <button className="start-btn">

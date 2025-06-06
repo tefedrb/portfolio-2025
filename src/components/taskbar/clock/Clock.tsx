@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import './Clock.css';
+import '../taskbar.css';
 import { getFormattedTime } from './utils/clock-utils';
 
 const Clock = () => {

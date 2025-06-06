@@ -50,7 +50,7 @@ export const defaultState: ContextState = {
   },
   files: {},
   folder: {},
-  openFolder: "About",
+  openFolder: "Projects",
   verticalDisplay: false,
   blueScreen: false,
   isMobileHack: false,
