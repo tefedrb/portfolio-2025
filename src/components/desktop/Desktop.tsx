@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { MutableRefObject, useEffect, useRef, useState } from 'react';
 import './Desktop.css';
 import Window from '../window/XPWindow';
 import { Files } from '../file-folder/file/projectFileData';
@@ -11,8 +11,15 @@ import { FileIconInterface } from '../window/windowTypes';
 import { useWindowContext } from '../../contexts/windowContext';
 
 const Desktop = () => {
-  const { allOpenWindows, addWindow } = useWindowContext();
+  const [desktopInfo, updateDesktopInfo] = useState<MutableRefObject<undefined> | null>(null);
+
   const desktopRef = useRef();
+
+  useEffect(() => {
+    updateDesktopInfo(desktopRef);
+  }, [desktopRef]);
+  
+  const { allOpenWindows, addWindow } = useWindowContext();
 
   const renderWindows = () => {
     const windowTitle = Object.keys(allOpenWindows);
@@ -58,7 +65,7 @@ const Desktop = () => {
           windowData={Files}
           title={"Projects"}
         />
-        {desktopRef.current ? <NewRecycleBin desktopInfo={desktopRef.current} /> : null}
+        {desktopInfo ? <NewRecycleBin desktopInfo={desktopInfo.current} /> : null}
         {renderWindows()}
         <Taskbar />
       </div>

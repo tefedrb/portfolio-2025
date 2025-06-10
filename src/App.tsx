@@ -1,5 +1,4 @@
 // import Home from './components/home/Home';
-// import './App.css';
 import Desktop from './components/desktop/Desktop';
 import Monitor from './components/monitor/Monitor';
 import { WindowContextProvider } from './providers/windowContextProvider';
