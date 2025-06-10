@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import "98.css";
 
 interface GraphicWrapperProps {
   name?: string;

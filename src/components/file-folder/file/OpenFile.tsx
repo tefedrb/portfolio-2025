@@ -1,6 +1,5 @@
 import { OpenFileInterface } from '../../../types/globalTypes';
 import { OpenFileDisplay } from './fileStyledComponents';
-import "98.css";
 
 // interface OpenFileProps {
 //   name: string;
