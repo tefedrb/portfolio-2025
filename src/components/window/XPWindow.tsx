@@ -1,28 +1,48 @@
 import { Rnd } from "react-rnd";
 import './XPWindow.css';
-import ProjectFile from "../file/ProjectFile";
+import File from "../file-folder/file/File";
+import { OpenFileInterface } from "../../types/globalTypes";
+import OpenFile from "../file-folder/file/OpenFile";
+import { FileIconInterface } from "./windowTypes";
+import { useWindowContext } from '../../contexts/windowContext';
 
+const renderContent = (data: { windowData: OpenFileInterface | FileIconInterface[] | FileIconInterface, type: string }) => {
+  // TODO: Add a check to see if the data is a file or a folder
+  // TODO: If it is a file, render the file
+  // TODO: If it is a folder, render the folder
+  // TODO: If it is a folder, render the files in the folder
+  // TODO: If it is a folder, render the folders in the folder
+  // TODO: If it is a folder, render the files in the folder
+  const { windowData, type } = data;
 
-export interface RenderFilesProps {
-  img: string;
-  title: string;
-}
-
-const renderFiles = (files: { img: string, title: string }[]) => {
-  console.log({ files }, "<--- files")
-  return (files && files.length > 0) ? 
-    files.map((file, key) => <ProjectFile img={file.img} title={file.title} key={key} />) : null;
+  if(type === "file"){
+    return <OpenFile data={data.windowData as OpenFileInterface} />
+  }
+  if(type === "folder"){
+    return (windowData as FileIconInterface[])
+      .map((file, key) => <File 
+        img={file.img} 
+         title={file.title} 
+        key={key}
+        file={file}
+        windowIsClosed={true}
+        defaultPos={{x: 0, y: 0}}
+        addWindow={() => {}}
+      />);
+  }
 }
 
 export interface WindowProps {
   data: {
+    type: string;
     name: string;
-    files: RenderFilesProps[];
+    windowData: OpenFileInterface | FileIconInterface[];
   };
-  close: (name: string) => void;
 }
 
-const Window = ({ data, close }: WindowProps) => {
+const Window = ({ data }: WindowProps) => {
+  const { closeWindow } = useWindowContext();
+
   return (
     // find the middle of the screen and minus half the windows height & width to find the xy
     <Rnd
@@ -42,22 +62,31 @@ const Window = ({ data, close }: WindowProps) => {
             <div className="title-bar-text">{data.name}</div>
           </div>
           <div className="title-bar-controls">
-            <button className="minimize" aria-label="Minimize"></button>
-            <button className="maximize" aria-label="Maximize"></button>
+            <button 
+              className="minimize" 
+              aria-label="Minimize"
+              onClick={() => console.log("minimize")}
+            />
+            <button 
+              className="maximize" 
+              aria-label="Maximize" 
+              onClick={() => console.log("maximize")}
+            />
             <button 
               className="close"
-              onTouchStart={() => close ? close(data.name) : null}
-              onClick={() => close ? close(data.name) : null}  aria-label="Close"
+              onTouchStart={() => closeWindow(data.name)}
+              onClick={() => closeWindow(data.name)}  
+              aria-label="Close"
             />
           </div>
         </div>
         <div className="window-body">
           <div className="inner-window-body">
-            {renderFiles(data.files)}
+            {renderContent({ windowData: data.windowData, type: data.type })}
           </div>
         </div>
-      </div> 
-    </Rnd>  
+      </div>
+    </Rnd>
   );
 };
 

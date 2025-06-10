@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import NavigationPanel from './NavigationPanel';
-import MiniFile from '../file/MiniFile';
-import { useProfileContext } from '../../useProfileContext';
-import { FileName, FileWrapper } from '../file/FileDropDown';
+import MiniFile from '../file-folder/file/MiniFile';
+import { useProfileContext } from '../../contexts/useProfileContext';
+import { FileName, FileWrapper } from '../file-folder/file/FileDropDown';
 
 const MobileFilePopUp = styled.div`
   display: none;

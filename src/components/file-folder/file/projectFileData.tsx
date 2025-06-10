@@ -1,9 +1,10 @@
-import equipped from '../../assets/icons/camera.png';
-import popcorn from '../../assets/icons/popcorn.png';
-import bookshop from '../../assets/icons/bookshop-crutch-file.png';
-import mobilize from '../../assets/icons/mobilize.png';
+import equipped from '../../../assets/icons/camera.png';
+import popcorn from '../../../assets/icons/popcorn.png';
+import bookshop from '../../../assets/icons/bookshop-crutch-file.png';
+import mobilize from '../../../assets/icons/mobilize.png';
+import { FileIconInterface } from '../../window/windowTypes';
 
-export const projectFiles = [
+export const Files: FileIconInterface[] = [
   {
     title: "Equipped",
     img: equipped,

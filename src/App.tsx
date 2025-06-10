@@ -1,23 +1,21 @@
 // import Home from './components/home/Home';
-import { ProviderValue } from './provider';
-import Monitor from './components/monitor/Monitor';
-import { Context, ContextState } from './context';
+// import './App.css';
 import Desktop from './components/desktop/Desktop';
+import Monitor from './components/monitor/Monitor';
+import { WindowContextProvider } from './providers/windowContextProvider';
 // import "98.css";
 
-const App = () => {
-  const value = ProviderValue();
-  
+function App() {
   return (
-    <div onClick={() => console.log('App clicked')} style={{ pointerEvents: 'auto' }}>
-      <Context.Provider value={value as ContextState}>
+    <div className="App">
+      <WindowContextProvider>
         <Monitor>
           <Desktop />
         </Monitor>
-      </Context.Provider>
+      </WindowContextProvider>
     </div>
   );
-};
+}
 
 // hot(module)(App)
 export default App;

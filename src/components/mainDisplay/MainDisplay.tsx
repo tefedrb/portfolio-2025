@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { FC } from 'react';
-import OpenFile from '../file/OpenFile';
+import OpenFile from '../file-folder/file/OpenFile';
 
 interface MainDisplayProps {
   openFolder?: string;

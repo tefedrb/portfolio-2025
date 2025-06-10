@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { useProfileContext } from '../../useProfileContext';
+import { useProfileContext } from '../../contexts/useProfileContext';
 import { getViewportXY } from '../../utils/viewportUtils';
 
 const PathWrap = styled.div`

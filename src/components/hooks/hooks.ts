@@ -1,5 +1,6 @@
-import {useState, useCallback, useRef, useEffect} from 'react';
-
+import {useState, useCallback, useRef, useEffect } from 'react';
+import { OpenFileInterface } from "../../types/globalTypes";
+import { FileIconInterface } from "../../components/window/windowTypes";
 /* 
   - Hook by Anil Kumar Chaudhary - adapted to fit project needs. 
     https://simbathesailor.dev/ 
@@ -57,4 +58,26 @@ export const useDoubleClick = (callback: () => void, eventType: string) => {
   }, [elem, eventType]);
   // [callbackRef, elem]
   return [callbackRef];
+}
+
+
+export const useWindowState = () => {
+  const [allOpenWindows, setAllOpenWindows] = useState<Record<string, { type: string; data: OpenFileInterface | FileIconInterface[] }>>({});
+
+  const addWindow = ({ type, key, data }: { type: string; key: string; data: OpenFileInterface | FileIconInterface[] }) => {
+    setAllOpenWindows(prevState => ({
+      ...prevState,
+      [key]: { type, data }
+    }));
+  };
+
+  const closeWindow = (windowName: string) => {
+    setAllOpenWindows(prevState => {
+      const newState = { ...prevState };
+      delete newState[windowName];
+      return newState;
+    });
+  };
+
+  return { allOpenWindows, addWindow, closeWindow }
 }

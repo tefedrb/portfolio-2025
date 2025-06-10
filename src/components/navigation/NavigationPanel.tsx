@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
-import Folder from '../folder/Folder';
+import Folder from '../file-folder/folder/Folder';
 import styled from 'styled-components';
-import { useProfileContext } from '../../useProfileContext';
+import { useProfileContext } from '../../contexts/useProfileContext';
 import { FOLDER_OPEN_ICON } from '../constants/icon-file-paths';
 
 interface NavWrapperProps {

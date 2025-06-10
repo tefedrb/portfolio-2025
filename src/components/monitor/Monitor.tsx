@@ -1,4 +1,4 @@
-import { useProfileContext } from '../../useProfileContext';
+import { useProfileContext } from '../../contexts/useProfileContext';
 import './monitor.scss';
 import powerBtn from '../../assets/power3.svg';
 

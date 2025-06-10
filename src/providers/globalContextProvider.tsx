@@ -1,11 +1,11 @@
 import { useState, useCallback, useMemo } from 'react';
 
-import Project from './components/folderContents/Project';
-import Equipped from './components/folderContents/Equipped';
-import Bookshop from './components/folderContents/Bookshop';
-import About from './components/folderContents/About';
-import Contact from './components/folderContents/Contact';
-import { ContextState } from './context';
+import Project from '../components/folderContents/Project';
+import Equipped from '../components/folderContents/Equipped';
+import Bookshop from '../components/folderContents/Bookshop';
+import About from '../components/folderContents/About';
+import Contact from '../components/folderContents/Contact';
+import { ContextStateInterface } from '../contexts/globalContext';
 
 export const ProviderValue = () => {
   const [ openFolder, setOpenFolder ] = useState("About");
@@ -107,7 +107,7 @@ export const ProviderValue = () => {
     return localStorage.getItem(item);
   }, []);
 
-  const value = useMemo((): ContextState => {
+  const value = useMemo((): ContextStateInterface => {
     return { 
       globalState, 
       files,

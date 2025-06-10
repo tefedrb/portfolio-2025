@@ -1,6 +1,6 @@
 import { createContext } from "react";
 
-export interface GlobalState {
+export interface GlobalStateInterface {
   folderLoc: [number, number];
   filesDisplayed: Array<{name: string}>;
   fileLoaded: string;
@@ -8,11 +8,11 @@ export interface GlobalState {
 }
 
 export interface GlobalStateUpdater {
-  (prop: keyof GlobalState, value: string | boolean | [number, number] | Array<{name: string}> | string, switcher: boolean): void;
+  (prop: keyof GlobalStateInterface, value: string | boolean | [number, number] | Array<{name: string}> | string, switcher: boolean): void;
 }
 
-export interface ContextState {
-  globalState: GlobalState;
+export interface ContextStateInterface {
+  globalState: GlobalStateInterface;
   files: {
     [key: string]: {
       link: string;
@@ -41,7 +41,7 @@ export interface ContextState {
   updateBlueScreen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export const defaultState: ContextState = {
+export const defaultState: ContextStateInterface = {
   globalState: {
     folderLoc: [100, 20],
     filesDisplayed: [{name: "about.js"}],
@@ -64,4 +64,4 @@ export const defaultState: ContextState = {
   updateBlueScreen: () => {}
 };
 
-export const Context = createContext<ContextState>(defaultState);
+export const GlobalContext = createContext<ContextStateInterface>(defaultState);

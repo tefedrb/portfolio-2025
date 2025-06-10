@@ -7,3 +7,10 @@ export interface TaskbarAreaItemInterface {
   icon: string;
   onClick: () => void;
 }
+
+export interface OpenFileInterface {
+  name: string;
+  link: string;
+  content: JSX.Element;
+  icon: string;
+}
