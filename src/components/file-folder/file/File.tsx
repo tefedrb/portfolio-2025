@@ -1,7 +1,5 @@
-import { FOLDER_OPEN_PATH } from '../../constants/icon-file-paths';
 import { isMobile } from 'react-device-detect';
 import { useDoubleClick } from '../../hooks/hooks';
-import { FOLDER_CLOSED_PATH } from '../../constants/icon-file-paths';
 import './File.css';
 import Draggable from 'react-draggable';
 import FileWrapper from '../shared/FolderFileWrapper';
@@ -19,11 +17,9 @@ interface FileProps {
   alt?: string;
 }
 
-const File = ({ title, file, windowIsClosed, defaultPos, }: FileProps) => {
+const File = ({ title, file, windowIsClosed, defaultPos, img }: FileProps) => {
   const [ doubleTouchCallback ] = useDoubleClick(handleClick, isMobile ? 'touchstart' : 'click');
   const { addWindow } = useWindowContext();
-
-  const img = windowIsClosed ? FOLDER_CLOSED_PATH : FOLDER_OPEN_PATH;
 
   function handleClick(){
     if(windowIsClosed){
@@ -36,7 +32,7 @@ const File = ({ title, file, windowIsClosed, defaultPos, }: FileProps) => {
       bounds={'parent'} 
       defaultPosition={defaultPos}
     >
-			<FileWrapper ref={doubleTouchCallback} name={"folderWrSap"}>
+			<FileWrapper textColor={'black'} ref={doubleTouchCallback} name={"folderWrSap"}>
         <img draggable={false} src={img ? img : img} alt={title} />
         <label>{title}</label>
 			</FileWrapper>

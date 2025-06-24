@@ -23,7 +23,7 @@ const RecycleBinWrapper = styled.div`
   }
 `;
 
-const NewRecycleBin = ({ desktopInfo }: RecycleBinProps) => { 
+const RecycleBin = ({ desktopInfo }: RecycleBinProps) => { 
   const nodeRef = useRef(null);
   const [position, setPosition] = useState({ x: desktopInfo?.clientWidth || 0, y: desktopInfo?.clientHeight || 0 });
 
@@ -34,14 +34,14 @@ const NewRecycleBin = ({ desktopInfo }: RecycleBinProps) => {
   useEffect(() => {
     const x = desktopInfo?.clientWidth || 0;
     const y = desktopInfo?.clientHeight || 0;
-    setPosition({ x: x - 100, y: y - 420 });
+    setPosition({ x: x - 100, y: y - 250 });
   }, [desktopInfo]);
 
   useEffect(() => {
     const handleResize = () => {
       const x = desktopInfo?.clientWidth || 0;
       const y = desktopInfo?.clientHeight || 0;
-      setPosition({ x: x - 100, y: y - 420 });
+      setPosition({ x: x - 100, y: y - 250 });
     }
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
@@ -64,4 +64,4 @@ const NewRecycleBin = ({ desktopInfo }: RecycleBinProps) => {
   );
 }
 
-export default NewRecycleBin;
+export default RecycleBin;

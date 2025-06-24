@@ -1,8 +1,7 @@
 import { useEffect } from 'react';
-import Folder from '../file-folder/folder/Folder';
 import styled from 'styled-components';
 import { useProfileContext } from '../../contexts/useProfileContext';
-import { FOLDER_OPEN_ICON } from '../constants/icon-file-paths';
+import { FOLDER_OPEN_PATH } from '../constants/icon-file-paths';
 
 interface NavWrapperProps {
   name?: string;
@@ -61,7 +60,7 @@ const NavigationPanel = () => {
       saveStateForMobileHack('isMobileHack', 'false');
     } else {
       saveStateForMobileHack('fileOpen', fileLoaded);
-      saveStateForMobileHack(FOLDER_OPEN_ICON, openFolder);
+      saveStateForMobileHack(FOLDER_OPEN_PATH, openFolder);
     }
 
     changeOpenFolder(openFolder);
@@ -79,24 +78,24 @@ const NavigationPanel = () => {
 
   return (
     <NavWrapper name={"navWrapper"}> 
-      <Folder
+      {/* <XPFolder
         changeOpenFolder={changeOpenFolder} 
         openFolder={openFolder} 
         title={"Projects"}
         files={folder["Projects"]}
       />
-      <Folder      
+      <XPFolder
         changeOpenFolder={changeOpenFolder} 
         openFolder={openFolder} 
         title={"About"}
         files={folder["About"]}
       />
-      <Folder 
+      <XPFolder
         changeOpenFolder={changeOpenFolder} 
         openFolder={openFolder}
         title={"Contact"}
         files={folder["Contact"]}
-      />
+      /> */}
     </NavWrapper>
   )
 }

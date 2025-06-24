@@ -4,14 +4,14 @@ import Window from '../window/XPWindow';
 import { Files } from '../file-folder/file/projectFileData';
 import { OpenFileInterface } from '../../types/globalTypes';
 import XPFolder from '../file-folder/folder/XPFolder';
-import NewRecycleBin from '../recycle/NewRecycleBin';
-import { FILE_ICON_PATH } from '../constants/icon-file-paths';
+import RecycleBin from '../recycle/RecycleBin';
 import Taskbar from '../taskbar/taskbar';
 import { FileIconInterface } from '../window/windowTypes';
 import { useWindowContext } from '../../contexts/windowContext';
 
 const Desktop = () => {
   const [desktopInfo, updateDesktopInfo] = useState<MutableRefObject<undefined> | null>(null);
+  const { allOpenWindows } = useWindowContext();
 
   const desktopRef = useRef();
 
@@ -19,8 +19,6 @@ const Desktop = () => {
     updateDesktopInfo(desktopRef);
   }, [desktopRef]);
   
-  const { allOpenWindows, addWindow } = useWindowContext();
-
   const renderWindows = () => {
     const windowTitle = Object.keys(allOpenWindows);
     const allWindowData = Object.values(allOpenWindows);
@@ -49,6 +47,7 @@ const Desktop = () => {
           img={FILE_ICON_PATH}
           alt={"about file"}
         /> */}
+        {/* <button onClick={() => console.log(allOpenWindows)}> All Windows</button> */}
         {/* <XPFolder
           addWindow={addWindow}
           windowIsClosed={allOpenWindows["Projects"] ? false : true}
@@ -59,13 +58,11 @@ const Desktop = () => {
           alt={"contact file"}
         /> */}
         <XPFolder
-          addWindow={addWindow}
-          windowIsClosed={allOpenWindows["Projects"] ? false : true} 
-          defaultPos={{x: 20, y: 60}}
+          defaultPos={{x: 20, y: 30}}
           windowData={Files}
           title={"Projects"}
         />
-        {desktopInfo ? <NewRecycleBin desktopInfo={desktopInfo.current} /> : null}
+        {desktopInfo ? <RecycleBin desktopInfo={desktopInfo.current} /> : null}
         {renderWindows()}
         <Taskbar />
       </div>

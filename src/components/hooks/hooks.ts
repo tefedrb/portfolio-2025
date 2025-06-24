@@ -6,25 +6,24 @@ import { FileIconInterface } from "../../components/window/windowTypes";
     https://simbathesailor.dev/ 
 */
 export const useDoubleClick = (callback: () => void, eventType: string) => {
-  /** callback ref Pattern **/
-  const [elem, setElem] = useState<HTMLElement | null>(null);
-  
-  const callbackRef = useCallback((node: HTMLElement | null) => {
-    if (node !== null) {
-      setElem(node);
-    }
-  }, []);
-
+  const elemRef = useRef<HTMLElement | null>(null);
   const countRef = useRef(0);
-/** Refs for the timer **/
   const timerRef = useRef<number | undefined>(undefined);
-/** Input callback Ref for callback passed **/
   const inputCallbackRef = useRef<(() => void) | null>(null);
   
+  // Store the callback in a ref to avoid dependency on it
   useEffect(() => {
+    console.log('useEffect', callback);
     inputCallbackRef.current = callback;
   }, [callback]);
   
+  const callbackRef = useCallback((node: HTMLElement | null) => {
+    console.log('callbackRef', node);
+    if (node !== null) {
+      elemRef.current = node;
+    }
+  }, []);
+
   useEffect(() => {
     function handler() {
       const isDoubleClick = countRef.current + 1 === 2;
@@ -47,16 +46,18 @@ export const useDoubleClick = (callback: () => void, eventType: string) => {
         timerRef.current = timer;
       }
     }
-    if (elem) {
-      elem.addEventListener(eventType, handler);
+
+    const currentElem = elemRef.current;
+    if (currentElem) {
+      currentElem.addEventListener(eventType, handler);
     }
     return () => {
-      if (elem) {
-        elem.removeEventListener(eventType, handler);
+      if (currentElem) {
+        currentElem.removeEventListener(eventType, handler);
       }
     }
-  }, [elem, eventType]);
-  // [callbackRef, elem]
+  }, [eventType]); // Only depend on eventType
+
   return [callbackRef];
 }
 

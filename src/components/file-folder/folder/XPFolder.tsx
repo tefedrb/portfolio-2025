@@ -5,40 +5,41 @@ import { OpenFileInterface } from "../../../types/globalTypes";
 import { FOLDER_CLOSED_PATH, FOLDER_OPEN_PATH } from "../../constants/icon-file-paths";
 import FolderWrapper from "../shared/FolderFileWrapper";
 import { FileIconInterface } from "../../window/windowTypes";
+import { useWindowContext } from "../../../contexts/windowContext";
+import { useCallback } from "react";
 
 interface FolderProps {
   title: string;
   windowData: OpenFileInterface | FileIconInterface[];
-  windowIsClosed: boolean;
   defaultPos: { x: number; y: number };
   img?: string;
   alt?: string;
-  addWindow: ({ key, data }: {
-    key: string;
-    type: string;
-    data: OpenFileInterface | FileIconInterface[];
-  }) => void;
 }
 
-const XPFolder = (props: FolderProps) => {
+const XPFolder = ({ title, windowData, defaultPos }: FolderProps) => {
+  const { allOpenWindows, addWindow } = useWindowContext();
+
+  const isWindowOpen = allOpenWindows[title];
+
+  const handleClick = useCallback(() => {
+    console.log('isWindowOpen', isWindowOpen);
+    if(!isWindowOpen){
+      addWindow({ type: "folder", key: title, data: windowData });
+    };
+  }, [isWindowOpen, title, windowData, addWindow]);
+
   const [ doubleTouchCallback ] = useDoubleClick(handleClick, isMobile ? 'touchstart' : 'click');
 
-  const img = props.windowIsClosed ? FOLDER_CLOSED_PATH : FOLDER_OPEN_PATH;
-
-  function handleClick(){
-    if(props.windowIsClosed){
-      props.addWindow({ type: "folder", key: props.title, data: props.windowData });
-    }
-  };
+  const img = isWindowOpen ? FOLDER_OPEN_PATH : FOLDER_CLOSED_PATH;
 
   return (
 		<Draggable
       bounds={'parent'} 
-      defaultPosition={props.defaultPos}
+      defaultPosition={defaultPos}
     >
 			<FolderWrapper ref={doubleTouchCallback} name={"folderWrSap"}>
-        <img draggable={false} src={props.img ? props.img : img} alt={props.title} />
-        <label>{props.title}</label>
+        <img draggable={false} src={img ? img : img} alt={title} />
+        <label>{title}</label>
 			</FolderWrapper>
 		</Draggable>
   );

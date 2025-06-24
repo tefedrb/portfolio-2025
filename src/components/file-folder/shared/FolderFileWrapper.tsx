@@ -5,6 +5,7 @@ interface FolderWrapperProps {
 }
 
 interface FolderWrapperProps {
+  textColor?: string;
   name: string;
 }
 
@@ -14,6 +15,7 @@ const FolderFileWrapper = styled.div<FolderWrapperProps>`
   width: 75px;
   height: auto;
   align-items: center;
+  color: ${({ textColor }) => textColor ? textColor : 'white'};
   img {
     width: 100%;
     height: 100%;

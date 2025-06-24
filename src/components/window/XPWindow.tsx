@@ -5,6 +5,7 @@ import { OpenFileInterface } from "../../types/globalTypes";
 import OpenFile from "../file-folder/file/OpenFile";
 import { FileIconInterface } from "./windowTypes";
 import { useWindowContext } from '../../contexts/windowContext';
+// import { Files } from "../file-folder/file/projectFileData";
 
 const renderContent = (data: { windowData: OpenFileInterface | FileIconInterface[] | FileIconInterface, type: string }) => {
   // TODO: Add a check to see if the data is a file or a folder
@@ -22,7 +23,7 @@ const renderContent = (data: { windowData: OpenFileInterface | FileIconInterface
     return (windowData as FileIconInterface[])
       .map((file, key) => <File 
         img={file.img} 
-         title={file.title} 
+        title={file.title} 
         key={key}
         file={file}
         windowIsClosed={true}
@@ -42,6 +43,8 @@ export interface WindowProps {
 
 const Window = ({ data }: WindowProps) => {
   const { closeWindow } = useWindowContext();
+
+  // addWindow({ type: "folder", key: "Projects", data: Files });
 
   return (
     // find the middle of the screen and minus half the windows height & width to find the xy
