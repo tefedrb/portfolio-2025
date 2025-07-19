@@ -14,7 +14,34 @@
 .inner-window-body {
   height: 100%;
   background-color: white;
+  display: flex;
+  flex-direction: row;
+  height: 100%;
 }
+
+.inner-window-nav {
+  height: 5em;
+  background-color: rgb(220, 228, 213);
+  border-top-color: #a9bdea;
+  border-top-style: solid;
+}
+
+.inner-window-sidebar {
+  width: 300px;
+  height: 100%;
+  background-color: rgb(169, 183, 233);
+  border-top-color: #a9bdea;
+  border-top-style: solid;
+}
+
+.inner-window-body-content {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  background-color: white;
+}
+
 
 .title-bar {
   /* box-shadow: 0px 1px 3px black; */
@@ -60,9 +87,26 @@
   width: 1.60rem;
 }
 
+nav {
+  height: 2em;
+  width: 100%;
+  border-bottom: .75px solid rgb(127, 132, 123);
+}
+
+.inner-window-nav button {
+  border: none;
+  padding: 0;
+  background-color: transparent;
+  color: black;
+  padding-right: 2em;
+  padding-top: .4em;
+}
+
+.inner-window-nav button:first-of-type {
+  padding-left: 1em;
+}
 .minimize {
   background-image: url('/windows-xp-remix/window-control-icons/minimize-button-sml2.png');
-
 }
 
 .maximize {

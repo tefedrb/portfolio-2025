@@ -14,11 +14,12 @@ const FolderFileWrapper = styled.div<FolderWrapperProps>`
   flex-direction: column;
   width: 75px;
   height: auto;
+  margin-top: ${({ name }) => name === 'fileWrSap' ? '2em' : '0'};
   align-items: center;
   color: ${({ textColor }) => textColor ? textColor : 'white'};
   img {
-    width: 100%;
-    height: 100%;
+    width: ${({ name }) => name === 'fileWrSap' ? '75px' : '100%'};
+    height: ${({ name }) => name === 'fileWrSap' ? 'auto' : '10%'};
   }
   // ADJUSTING FOR MOBILE VIEW
   @media (max-width: 948px) and (min-height: 500px) {

@@ -13,12 +13,10 @@ export const useDoubleClick = (callback: () => void, eventType: string) => {
   
   // Store the callback in a ref to avoid dependency on it
   useEffect(() => {
-    console.log('useEffect', callback);
     inputCallbackRef.current = callback;
   }, [callback]);
   
   const callbackRef = useCallback((node: HTMLElement | null) => {
-    console.log('callbackRef', node);
     if (node !== null) {
       elemRef.current = node;
     }

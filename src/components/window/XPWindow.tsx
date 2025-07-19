@@ -5,6 +5,7 @@ import { OpenFileInterface } from "../../types/globalTypes";
 import OpenFile from "../file-folder/file/OpenFile";
 import { FileIconInterface } from "./windowTypes";
 import { useWindowContext } from '../../contexts/windowContext';
+import XPWindowNav from "./XPWindowNav";
 // import { Files } from "../file-folder/file/projectFileData";
 
 const renderContent = (data: { windowData: OpenFileInterface | FileIconInterface[] | FileIconInterface, type: string }) => {
@@ -21,13 +22,13 @@ const renderContent = (data: { windowData: OpenFileInterface | FileIconInterface
   }
   if(type === "folder"){
     return (windowData as FileIconInterface[])
-      .map((file, key) => <File 
+      .map((file, key) => <File
         img={file.img} 
         title={file.title} 
         key={key}
         file={file}
         windowIsClosed={true}
-        defaultPos={{x: 0, y: 0}}
+        // defaultPos={{x: 0, y: 0}}
         addWindow={() => {}}
       />);
   }
@@ -43,8 +44,6 @@ export interface WindowProps {
 
 const Window = ({ data }: WindowProps) => {
   const { closeWindow } = useWindowContext();
-
-  // addWindow({ type: "folder", key: "Projects", data: Files });
 
   return (
     // find the middle of the screen and minus half the windows height & width to find the xy
@@ -84,8 +83,12 @@ const Window = ({ data }: WindowProps) => {
           </div>
         </div>
         <div className="window-body">
+          <XPWindowNav />
           <div className="inner-window-body">
-            {renderContent({ windowData: data.windowData, type: data.type })}
+            <div className="inner-window-sidebar"></div>
+            <div className="inner-window-body-content">
+              {renderContent({ windowData: data.windowData, type: data.type })}
+            </div>
           </div>
         </div>
       </div>

@@ -22,8 +22,8 @@ const XPFolder = ({ title, windowData, defaultPos }: FolderProps) => {
   const isWindowOpen = allOpenWindows[title];
 
   const handleClick = useCallback(() => {
-    console.log('isWindowOpen', isWindowOpen);
     if(!isWindowOpen){
+      console.log({ windowData });
       addWindow({ type: "folder", key: title, data: windowData });
     };
   }, [isWindowOpen, title, windowData, addWindow]);

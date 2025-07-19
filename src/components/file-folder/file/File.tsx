@@ -12,12 +12,12 @@ interface FileProps {
   file: FileIconInterface;
   windowIsClosed: boolean;
   addWindow: (window: { type: string; key: string; data: OpenFileInterface | FileIconInterface[] }) => void;
-  defaultPos: { x: number; y: number };
+  defaultPos?: { x: number; y: number } | undefined;
   img?: string;
   alt?: string;
 }
 
-const File = ({ title, file, windowIsClosed, defaultPos, img }: FileProps) => {
+const File = ({ title, file, windowIsClosed, defaultPos = undefined, img }: FileProps) => {
   const [ doubleTouchCallback ] = useDoubleClick(handleClick, isMobile ? 'touchstart' : 'click');
   const { addWindow } = useWindowContext();
 
@@ -29,10 +29,10 @@ const File = ({ title, file, windowIsClosed, defaultPos, img }: FileProps) => {
 
   return (
 		<Draggable
-      bounds={'parent'} 
-      defaultPosition={defaultPos}
+      // bounds={'parent'} 
+      defaultPosition={defaultPos ?? undefined}
     >
-			<FileWrapper textColor={'black'} ref={doubleTouchCallback} name={"folderWrSap"}>
+			<FileWrapper textColor={'black'} ref={doubleTouchCallback} name={"fileWrSap"}>
         <img draggable={false} src={img ? img : img} alt={title} />
         <label>{title}</label>
 			</FileWrapper>
