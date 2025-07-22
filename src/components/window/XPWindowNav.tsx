@@ -1,3 +1,5 @@
+import XPWindowNavIcons from "./XPWindowNavIcons";
+
 const XPWindowNav = () => {
   return (
     <div className="inner-window-nav">
@@ -9,6 +11,7 @@ const XPWindowNav = () => {
         <button><u>T</u>ools</button>
         <button><u>H</u>elp</button>
       </nav>
+      <XPWindowNavIcons />
     </div>
   )
 }

@@ -6,6 +6,7 @@ import OpenFile from "../file-folder/file/OpenFile";
 import { FileIconInterface } from "./windowTypes";
 import { useWindowContext } from '../../contexts/windowContext';
 import XPWindowNav from "./XPWindowNav";
+import { FOLDER_CLOSED_ICON } from "../constants/icon-file-paths";
 // import { Files } from "../file-folder/file/projectFileData";
 
 const renderContent = (data: { windowData: OpenFileInterface | FileIconInterface[] | FileIconInterface, type: string }) => {
@@ -60,7 +61,7 @@ const Window = ({ data }: WindowProps) => {
       <div className="window custom-window">
         <div className="title-bar">
           <div className="title-bar-header">
-            <img src="/windows-xp-remix/folderClosedRemixWeb.webp" alt="Window Icon" className="window-icon" />
+            <img src={FOLDER_CLOSED_ICON} alt="Window Icon" className="window-icon" />
             <div className="title-bar-text">{data.name}</div>
           </div>
           <div className="title-bar-controls">

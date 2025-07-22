@@ -1,7 +1,14 @@
 @import 'reset-css';
 
+@font-face {
+  font-family: 'TahomaCustom';
+  src: url('/src/assets/fonts/tahoma.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'TahomaCustom', sans-serif;
   line-height: 1.5;
   font-weight: 400;
   height: 100%;
