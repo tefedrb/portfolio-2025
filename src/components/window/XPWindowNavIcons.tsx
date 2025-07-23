@@ -14,11 +14,11 @@ const XPWindowNavIcons = () => {
       <div className="nav-icons-left">
         <img src={GO_TO_PREVIOUS_ICON} />
         <div>
-          <img id="nav-icons-left-arrow-down" src={ARROW_DOWN_ICON} />
+          <img id="nav-icons-arrow-down" src={ARROW_DOWN_ICON} />
         </div>  
         <img src={GO_TO_NEXT_ICON} />
         <div>
-          <img id="nav-icons-left-arrow-down" src={ARROW_DOWN_ICON} />
+          <img id="nav-icons-arrow-down" src={ARROW_DOWN_ICON} />
         </div>
         <img src={GO_TO_PARENT_FOLDER} />
       </div>
@@ -28,13 +28,21 @@ const XPWindowNavIcons = () => {
       </div>
       <div className="nav-icons-right-2">
         <img src={PROGRAMS_ICON} />
+        <img id="nav-icons-arrow-down" src={ARROW_DOWN_ICON} />
+
       </div>
       <div className="nav-icons-far-right">
-        <label className="search-bar">Address</label>
-        <input type="text" />
-        <span>
-          <img src={ARROW_DOWN_ICON} />
-        </span>
+        <div className="nav-search-bar-warp">
+          <label className="search-bar">
+            <span>A<u>d</u>dress</span>
+            <div className="nav-search-bar-input-warp">
+              <input id="nav-search-bar" type="text" />
+              <div className="input-adornment-wrap">
+                <img id="input-adornment" src={ARROW_DOWN_ICON} />
+              </div>
+            </div>
+          </label>
+        </div>
       </div>
     </section>
   )
