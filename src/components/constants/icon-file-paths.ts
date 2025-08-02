@@ -11,6 +11,8 @@ const MAGNIFYING_GLASS_ICON = "/windows-xp-remix/xp-nav-icons/magnifer-sml.png";
 const ARROW_DOWN_ICON = "/windows-xp-remix/xp-nav-icons/arrow-down.png";
 const DOUBLE_FOLDERS_ICON = "/windows-xp-remix/xp-nav-icons/nav-icons-double-folder-sml.png";
 const PROGRAMS_ICON = "/windows-xp-remix/xp-nav-icons/programs-icon-sml.png";
+const MOCK_LOGO_ICON = "/windows-xp-remix/remixLogo2.webp";
+const MOCK_LOGO_ICON_SML = "/windows-xp-remix/remixLogo2-sml.png";
 
 export { 
   ARROW_DOWN_ICON,
@@ -25,5 +27,7 @@ export {
   MAGNIFYING_GLASS_ICON,
   RECYCLE_BIN_PATH, 
   START_ICON_PATH,
-  PROGRAMS_ICON
+  PROGRAMS_ICON,
+  MOCK_LOGO_ICON,
+  MOCK_LOGO_ICON_SML
 };

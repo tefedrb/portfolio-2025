@@ -32,7 +32,7 @@ const File = ({ title, file, windowIsClosed, defaultPos = undefined, img }: File
       // bounds={'parent'} 
       defaultPosition={defaultPos ?? undefined}
     >
-			<FileWrapper textColor={'black'} ref={doubleTouchCallback} name={"fileWrSap"}>
+			<FileWrapper textcolor={'black'} ref={doubleTouchCallback} name={"fileWrSap"}>
         <img draggable={false} src={img ? img : img} alt={title} />
         <label>{title}</label>
 			</FileWrapper>

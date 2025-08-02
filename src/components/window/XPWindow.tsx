@@ -56,7 +56,7 @@ const Window = ({ data }: WindowProps) => {
         height: window.innerHeight - (window.innerHeight/3),
       }}
       minHeight={'175px'}
-      minWidth={'175px'}
+      minWidth={'550px'}
     >
       <div className="window custom-window">
         <div className="title-bar">
