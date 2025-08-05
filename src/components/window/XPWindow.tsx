@@ -7,16 +7,18 @@ import { FileIconInterface } from "./windowTypes";
 import { useWindowContext } from '../../contexts/windowContext';
 import XPWindowNav from "./XPWindowNav";
 import { FOLDER_CLOSED_ICON } from "../constants/icon-file-paths";
-// import { Files } from "../file-folder/file/projectFileData";
+import Sidebar from "./sidebar/Sidebar";
+import { useState } from "react";
 
-const renderContent = (data: { windowData: OpenFileInterface | FileIconInterface[] | FileIconInterface, type: string }) => {
-  // TODO: Add a check to see if the data is a file or a folder
-  // TODO: If it is a file, render the file
-  // TODO: If it is a folder, render the folder
-  // TODO: If it is a folder, render the files in the folder
-  // TODO: If it is a folder, render the folders in the folder
-  // TODO: If it is a folder, render the files in the folder
-  const { windowData, type } = data;
+interface RenderContentProps {
+  windowData: OpenFileInterface | FileIconInterface[] | FileIconInterface;
+  type: string;
+  fileSelected: FileIconInterface | null;
+  setFileSelected: (file: FileIconInterface | null) => void;
+}
+
+const renderContent = (data: RenderContentProps) => {
+  const { windowData, type, fileSelected, setFileSelected } = data;
 
   if(type === "file"){
     return <OpenFile data={data.windowData as OpenFileInterface} />
@@ -24,6 +26,9 @@ const renderContent = (data: { windowData: OpenFileInterface | FileIconInterface
   if(type === "folder"){
     return (windowData as FileIconInterface[])
       .map((file, key) => <File
+        setFileSelected={setFileSelected}
+        fileSelected={fileSelected}
+        height={75}
         img={file.img} 
         title={file.title} 
         key={key}
@@ -45,6 +50,7 @@ export interface WindowProps {
 
 const Window = ({ data }: WindowProps) => {
   const { closeWindow } = useWindowContext();
+  const [fileSelected, setFileSelected] = useState<FileIconInterface | null>(null);
 
   return (
     // find the middle of the screen and minus half the windows height & width to find the xy
@@ -86,9 +92,9 @@ const Window = ({ data }: WindowProps) => {
         <div className="window-body">
           <XPWindowNav />
           <div className="inner-window-body">
-            <div className="inner-window-sidebar"></div>
+            <Sidebar />
             <div className="inner-window-body-content">
-              {renderContent({ windowData: data.windowData, type: data.type })}
+              {renderContent({ windowData: data.windowData, type: data.type, fileSelected, setFileSelected })}
             </div>
           </div>
         </div>

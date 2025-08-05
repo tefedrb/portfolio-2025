@@ -24,12 +24,13 @@ const XPWindowNavIcons = () => {
       </div>
       <div className="nav-icons-right">
         <img src={MAGNIFYING_GLASS_ICON} />
+        <span>Search</span>
         <img src={DOUBLE_FOLDERS_ICON} />
+        <span>Folders</span>
       </div>
       <div className="nav-icons-right-2">
         <img src={PROGRAMS_ICON} />
         <img id="nav-icons-arrow-down" src={ARROW_DOWN_ICON} />
-
       </div>
       <div className="nav-icons-far-right">
         <div className="nav-search-bar-warp">

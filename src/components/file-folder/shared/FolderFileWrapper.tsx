@@ -7,13 +7,17 @@ interface FolderWrapperProps {
 interface FolderWrapperProps {
   textcolor?: string;
   name: string;
+  height?: number;
+  fileIsSelected?: boolean;
 }
 
 const FolderFileWrapper = styled.div<FolderWrapperProps>`
   display: flex;
   flex-direction: column;
+  justify-content: center;
   width: 75px;
-  height: auto;
+  height: ${({ height }) => height ? `${height}px` : 'auto'};
+  text-align: center;
   margin-top: ${({ name }) => name === 'fileWrSap' ? '2em' : '0'};
   align-items: center;
   color: ${({ textcolor }) => textcolor ? textcolor : 'white'};

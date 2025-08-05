@@ -15,9 +15,23 @@ interface FileProps {
   defaultPos?: { x: number; y: number } | undefined;
   img?: string;
   alt?: string;
+  height?: number;
+  fileSelected?: FileIconInterface | null;
+  setFileSelected?: (file: FileIconInterface | null) => void;
 }
 
-const File = ({ title, file, windowIsClosed, defaultPos = undefined, img }: FileProps) => {
+const File = (props: FileProps) => {
+  const { 
+    title, 
+    file, 
+    windowIsClosed, 
+    defaultPos = undefined, 
+    img, 
+    height, 
+    fileSelected, 
+    setFileSelected 
+  } = props;
+
   const [ doubleTouchCallback ] = useDoubleClick(handleClick, isMobile ? 'touchstart' : 'click');
   const { addWindow } = useWindowContext();
 
@@ -27,14 +41,23 @@ const File = ({ title, file, windowIsClosed, defaultPos = undefined, img }: File
     }
   };
 
+  const fileIsSelected = fileSelected?.title === title;
+
   return (
 		<Draggable
       // bounds={'parent'} 
       defaultPosition={defaultPos ?? undefined}
     >
-			<FileWrapper textcolor={'black'} ref={doubleTouchCallback} name={"fileWrSap"}>
+			<FileWrapper
+        onClick={() => setFileSelected?.(file)}
+        fileIsSelected={fileIsSelected} 
+        height={height}
+        textcolor={'black'} 
+        ref={doubleTouchCallback} 
+        name={"fileWrSap"}
+      >
         <img draggable={false} src={img ? img : img} alt={title} />
-        <label>{title}</label>
+        <span style={{ backgroundColor: fileIsSelected ? '#80808069' : 'transparent' }} className="file-title">{title}</span>
 			</FileWrapper>
 		</Draggable>
   );

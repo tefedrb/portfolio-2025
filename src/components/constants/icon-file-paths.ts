@@ -13,6 +13,7 @@ const DOUBLE_FOLDERS_ICON = "/windows-xp-remix/xp-nav-icons/nav-icons-double-fol
 const PROGRAMS_ICON = "/windows-xp-remix/xp-nav-icons/programs-icon-sml.png";
 const MOCK_LOGO_ICON = "/windows-xp-remix/remixLogo2.webp";
 const MOCK_LOGO_ICON_SML = "/windows-xp-remix/remixLogo2-sml.png";
+const SIDEBAR_CONTENT_ICON = "/windows-xp-remix/xp-nav-icons/button-arrows-sml.png";
 
 export { 
   ARROW_DOWN_ICON,
@@ -29,5 +30,6 @@ export {
   START_ICON_PATH,
   PROGRAMS_ICON,
   MOCK_LOGO_ICON,
-  MOCK_LOGO_ICON_SML
+  MOCK_LOGO_ICON_SML,
+  SIDEBAR_CONTENT_ICON
 };
