@@ -1,0 +1,77 @@
+.mini-file.graphic-wrapper {
+  pointer-events: auto;
+  width: 90%;
+  max-width: 900px;
+  height: 95%;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.mini-file.graphic-wrapper.is-mini {
+  width: 30px;
+  height: auto;
+  margin-bottom: 35px;
+  margin-top: 0;
+}
+
+.mini-file .graphic-head-wrapper {
+  display: flex;
+  height: 10%;
+}
+
+.mini-file .graphic-head {
+  box-shadow: 1px -5px 27px -7px rgba(42, 160, 42, 1);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: rgba(42, 160, 42, 1);
+}
+
+.mini-file.is-mini .graphic-head {
+  background-color: rgba(255, 255, 255, 0.83);
+}
+
+.mini-file .graphic-fold {
+  border-right: 75px solid transparent;
+  border-bottom: 75px solid rgb(42, 227, 42);
+  box-shadow: -7px 3px 7px -4px rgba(00, 00, 00, 0.4);
+}
+
+.mini-file .graphic-body {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  overflow: auto;
+  height: 90%;
+  width: 90%;
+  box-shadow: 1px -5px 27px -7px rgba(42, 160, 42, 0.4);
+  background-color: rgba(42, 160, 42, 1);
+}
+
+.mini-file.is-mini .graphic-body {
+  height: 35px;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.83);
+  box-shadow: 1px -5px 27px -7px transparent;
+}
+
+@media (max-width: 948px) {
+  .mini-file.graphic-wrapper.is-mini {
+    width: 20px;
+    margin-bottom: 0;
+  }
+  .mini-file .graphic-body {
+    height: 93%;
+  }
+}
+
+@media (max-width: 650px) {
+  .mini-file .graphic-body {
+    font-size: 0.75em;
+    height: 90%;
+  }
+}
+
+

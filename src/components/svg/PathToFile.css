@@ -1,0 +1,10 @@
+.path-wrap {
+}
+
+@media (max-height: 700px) {
+  .path-wrap {
+    display: none;
+  }
+}
+
+

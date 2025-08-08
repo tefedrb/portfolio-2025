@@ -15,6 +15,16 @@ const MOCK_LOGO_ICON = "/windows-xp-remix/remixLogo2.webp";
 const MOCK_LOGO_ICON_SML = "/windows-xp-remix/remixLogo2-sml.png";
 const SIDEBAR_CONTENT_ICON = "/windows-xp-remix/xp-nav-icons/button-arrows-sml.png";
 
+// Windows XP Explorer Icons
+const NEW_FOLDER_ICON = "/windows-xp-explorer-icons/new-folder.png";
+const MOVE_FOLDER_ICON = "/windows-xp-explorer-icons/move-folder.png";
+const SHARE_FOLDER_ICON = "/windows-xp-explorer-icons/share-folder.png";
+const PUBLISH_FOLDER_ICON = "/windows-xp-explorer-icons/publish-folder.png";
+const SEARCH_ICON = "/windows-xp-explorer-icons/search-icon.png";
+const MY_DOCUMENTS_ICON = "/windows-xp-explorer-icons/my-documents.png";
+const MY_COMPUTER_ICON = "/windows-xp-explorer-icons/my-computer.png";
+const NETWORK_PLACES_ICON = "/windows-xp-explorer-icons/network-places.png";
+
 export { 
   ARROW_DOWN_ICON,
   DOUBLE_FOLDERS_ICON,
@@ -31,5 +41,13 @@ export {
   PROGRAMS_ICON,
   MOCK_LOGO_ICON,
   MOCK_LOGO_ICON_SML,
-  SIDEBAR_CONTENT_ICON
+  SIDEBAR_CONTENT_ICON,
+  NEW_FOLDER_ICON,
+  MOVE_FOLDER_ICON,
+  SHARE_FOLDER_ICON,
+  PUBLISH_FOLDER_ICON,
+  SEARCH_ICON,
+  MY_DOCUMENTS_ICON,
+  MY_COMPUTER_ICON,
+  NETWORK_PLACES_ICON
 };

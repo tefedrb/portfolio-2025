@@ -1,0 +1,41 @@
+ .folder-file-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 75px;
+  text-align: center;
+  align-items: center;
+}
+
+.folder-file-wrapper img {
+  width: 100%;
+  height: 10%;
+}
+
+.folder-file-wrapper.fileWrSap {
+  margin-top: 2em;
+}
+
+.folder-file-wrapper.fileWrSap img {
+  width: 75px;
+  height: auto;
+}
+
+@media (max-width: 948px) and (min-height: 500px) {
+  .folder-file-wrapper {
+    width: 55px;
+    height: auto;
+    margin-right: 0;
+  }
+}
+
+@media screen and (max-width: 651px), screen and (max-height: 757px) {
+  .folder-file-wrapper {
+    margin-top: 2%;
+    color: green;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
+

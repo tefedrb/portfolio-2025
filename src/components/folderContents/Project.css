@@ -1,0 +1,24 @@
+.project-display {
+  display: block;
+  margin: auto;
+  text-align: center;
+  width: 90%;
+  max-width: 800px;
+}
+
+.project-display.is-flex {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}
+
+@media (max-height: 825px) {
+  .project-display.is-flex {
+    display: flex;
+    margin: none;
+  }
+}
+
+
