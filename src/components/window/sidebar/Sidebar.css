@@ -52,4 +52,25 @@
 
 .sidebar-body ul li {
   list-style-type: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  padding: 0.25em 0.35em;
+}
+
+.sidebar-body ul li img {
+  width: 1em;
+  height: 1em;
+}
+
+.sidebar-body ul li span {
+  line-height: 1.25em;
+}
+
+.sidebar-body ul li .sidebar-emoji {
+  display: inline-flex;
+  width: 1em;
+  height: 1em;
+  align-items: center;
+  justify-content: center;
 }

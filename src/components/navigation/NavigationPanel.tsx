@@ -3,9 +3,7 @@ import styled from 'styled-components';
 import { useProfileContext } from '../../contexts/useProfileContext';
 import { FOLDER_OPEN_PATH } from '../constants/icon-file-paths';
 
-interface NavWrapperProps {
-  name?: string;
-}
+interface NavWrapperProps { name?: string; }
 
 const NavWrapper = styled.nav<NavWrapperProps>`
   pointer-events: auto;
@@ -30,7 +28,7 @@ const NavWrapper = styled.nav<NavWrapperProps>`
     background-color: rgba(79, 79, 79, 0.73);
     box-shadow: 1px -5px 27px -7px rgba(79,79,79,0.73);
   }
-`
+`;
 
 const NavigationPanel = () => {
   const { 
@@ -55,7 +53,7 @@ const NavigationPanel = () => {
     if(checkStorageForMobileHack()){
       console.log('checkStorageForMobileHack', checkStorageForMobileHack());
       globalStateUpdater("fileLoaded", rehydrateStateFromStorage('fileOpen') as string, false);
-      changeOpenFolder(rehydrateStateFromStorage(FOLDER_OPEN_ICON) as string);
+      changeOpenFolder(rehydrateStateFromStorage(FOLDER_OPEN_PATH) as string);
 
       saveStateForMobileHack('isMobileHack', 'false');
     } else {

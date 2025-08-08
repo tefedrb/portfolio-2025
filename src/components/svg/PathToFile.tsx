@@ -1,13 +1,11 @@
 import { useState, useEffect } from 'react';
-import styled from 'styled-components';
+import './PathToFile.css';
 import { useProfileContext } from '../../contexts/useProfileContext';
 import { getViewportXY } from '../../utils/viewportUtils';
 
-const PathWrap = styled.div`
-  @media (max-height: 700px) {
-    display: none;
-  }
-`;
+const PathWrap = (props: React.PropsWithChildren) => (
+  <div className="path-wrap" {...props} />
+);
 
 // const Lines = styled.svg`
 //   height: 100vh;

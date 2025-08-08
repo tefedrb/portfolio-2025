@@ -4,6 +4,36 @@ import MiniFile from '../file-folder/file/MiniFile';
 import { useProfileContext } from '../../contexts/useProfileContext';
 import { FileName, FileWrapper } from '../file-folder/file/FileDropDown';
 
+
+interface MobileNavAdapterProps {
+  name?: string;
+}
+
+const MobileNavAdapter: React.FC<MobileNavAdapterProps> = () => {
+  const { globalState, globalStateUpdater } = useProfileContext();
+  const { filesDisplayed, fileLoaded } = globalState;
+
+  const files = () => {
+    return filesDisplayed.map((file, key) => (
+      <FileWrapper name={"FileWrap"} key={key}>
+        <span onClick={() => globalStateUpdater("fileLoaded", file.name, false)}>
+          <MiniFile data={file} mini={true} />
+        </span>
+        <FileName open={fileLoaded === file.name}>{file.name}</FileName>
+      </FileWrapper>
+    ));
+  };
+
+  return (
+    <MobileNavWrapper>
+      <MobileFilePopUp>{files()}</MobileFilePopUp>
+      <NavigationPanel />
+    </MobileNavWrapper>
+  );
+};
+
+export default MobileNavAdapter;
+
 const MobileFilePopUp = styled.div`
   display: none;
   // MOBILE VIEW ALTERATION -> testing and min-height
@@ -48,32 +78,3 @@ const MobileNavWrapper = styled.div`
     box-shadow: none;
   }
 `;
-
-interface MobileNavAdapterProps {
-  name?: string;
-}
-
-const MobileNavAdapter: React.FC<MobileNavAdapterProps> = () => {
-  const { globalState, globalStateUpdater } = useProfileContext();
-  const { filesDisplayed, fileLoaded } = globalState;
-
-  const files = () => {
-    return filesDisplayed.map((file, key) => (
-      <FileWrapper name={"FileWrap"} key={key}>
-        <span onClick={() => globalStateUpdater("fileLoaded", file.name, false)}>
-          <MiniFile data={file} mini={true} />
-        </span>
-        <FileName open={fileLoaded === file.name}>{file.name}</FileName>
-      </FileWrapper>
-    ));
-  };
-
-  return (
-    <MobileNavWrapper>
-      <MobileFilePopUp>{files()}</MobileFilePopUp>
-      <NavigationPanel />
-    </MobileNavWrapper>
-  );
-};
-
-export default MobileNavAdapter;

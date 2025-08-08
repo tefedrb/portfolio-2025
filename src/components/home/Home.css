@@ -1,0 +1,32 @@
+.home-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  z-index: 1;
+  overflow: hidden;
+  grid-area: centerA;
+  background-color: rgb(5, 5, 5);
+  pointer-events: auto;
+}
+
+.inner-home {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  background-color: rgb(10, 10, 10);
+  border-radius: 28px;
+  pointer-events: auto;
+}
+
+@media (max-width: 948px) and (min-height: 500px) {
+  .inner-home {
+    flex-direction: column-reverse;
+  }
+}
+
+

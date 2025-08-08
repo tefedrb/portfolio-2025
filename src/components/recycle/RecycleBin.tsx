@@ -2,7 +2,6 @@ import './RecycleBin.css';
 import Draggable, { DraggableData } from 'react-draggable';
 import recycle from '/windows-xp-remix/recyclingBinRemix2Web.webp'
 import { useEffect, useRef, useState } from 'react';
-import styled from 'styled-components';
 
 interface RecycleBinProps {
   desktopInfo: {
@@ -11,17 +10,6 @@ interface RecycleBinProps {
   } | null | undefined;
 }
 
-const RecycleBinWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 75px;
-  height: auto;
-  align-items: center;
-  img {
-    width: 100%;
-    height: 100%;
-  }
-`;
 
 const RecycleBin = ({ desktopInfo }: RecycleBinProps) => { 
   const nodeRef = useRef(null);
@@ -56,10 +44,10 @@ const RecycleBin = ({ desktopInfo }: RecycleBinProps) => {
       onDrag={handleDrag}
       nodeRef={nodeRef}
     > 
-      <RecycleBinWrapper className="recycle-bin-container" ref={nodeRef}>
-        <img draggable={false} src={recycle} />
-        <label style={{ width: "100px", textAlign: "center" }}>Recycle Bin</label>
-      </RecycleBinWrapper>
+      <div className="recycle-bin-container" ref={nodeRef}>
+        <img className="recycle-bin-image" draggable={false} src={recycle} />
+        <label className="recycle-bin-label">Recycle Bin</label>
+      </div>
     </Draggable>
   );
 }

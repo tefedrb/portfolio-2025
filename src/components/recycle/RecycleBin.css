@@ -9,6 +9,24 @@
   width: 75px;
 }
 
+.recycle-bin-container {
+  display: flex;
+  flex-direction: column;
+  width: 75px;
+  height: auto;
+  align-items: center;
+}
+
+.recycle-bin-image {
+  width: 100%;
+  height: 100%;
+}
+
+.recycle-bin-label {
+  width: 100px;
+  text-align: center;
+}
+
 .outer-can-container span {
   color: white;
   text-shadow: 2px 2px 2px black;
