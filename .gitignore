@@ -23,3 +23,7 @@ dist-ssr
 *.sln
 *.sw?
 extra-project-assets
+
+CLAUDE.md
+
+docs

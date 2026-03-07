@@ -1,8 +1,6 @@
-// import Home from './components/home/Home';
 import Desktop from './components/desktop/Desktop';
 import Monitor from './components/monitor/Monitor';
 import { WindowContextProvider } from './providers/windowContextProvider';
-// import "98.css";
 
 function App() {
   return (
@@ -16,5 +14,4 @@ function App() {
   );
 }
 
-// hot(module)(App)
 export default App;

@@ -6,7 +6,7 @@ import { FOLDER_CLOSED_PATH, FOLDER_OPEN_PATH } from "../../constants/icon-file-
 import FolderWrapper from "../shared/FolderFileWrapper";
 import { FileIconInterface } from "../../window/windowTypes";
 import { useWindowContext } from "../../../contexts/windowContext";
-import { useCallback } from "react";
+import { useCallback, useRef } from "react";
 
 interface FolderProps {
   title: string;
@@ -30,14 +30,22 @@ const XPFolder = ({ title, windowData, defaultPos }: FolderProps) => {
 
   const [ doubleTouchCallback ] = useDoubleClick(handleClick, isMobile ? 'touchstart' : 'click');
 
+  const nodeRef = useRef<HTMLDivElement>(null);
+
+  const combinedRef = useCallback((node: HTMLDivElement | null) => {
+    (nodeRef as React.MutableRefObject<HTMLDivElement | null>).current = node;
+    doubleTouchCallback(node);
+  }, [doubleTouchCallback]);
+
   const img = isWindowOpen ? FOLDER_OPEN_PATH : FOLDER_CLOSED_PATH;
 
   return (
 		<Draggable
-      bounds={'parent'} 
+      nodeRef={nodeRef}
+      bounds={'parent'}
       defaultPosition={defaultPos}
     >
-			<FolderWrapper ref={doubleTouchCallback} name={"folderWrSap"}>
+			<FolderWrapper ref={combinedRef} name={"folderWrSap"}>
         <img draggable={false} src={img ? img : img} alt={title} />
         <label>{title}</label>
 			</FolderWrapper>

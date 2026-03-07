@@ -1,3 +1,4 @@
+import { useCallback, useRef } from 'react';
 import { isMobile } from 'react-device-detect';
 import { useDoubleClick } from '../../hooks/hooks';
 import './File.css';
@@ -32,7 +33,6 @@ const File = (props: FileProps) => {
     setFileSelected 
   } = props;
 
-  const [ doubleTouchCallback ] = useDoubleClick(handleClick, isMobile ? 'touchstart' : 'click');
   const { addWindow } = useWindowContext();
 
   function handleClick(){
@@ -41,19 +41,29 @@ const File = (props: FileProps) => {
     }
   };
 
+  const [ doubleTouchCallback ] = useDoubleClick(handleClick, isMobile ? 'touchstart' : 'click');
+
+  const nodeRef = useRef<HTMLDivElement>(null);
+
+  const combinedRef = useCallback((node: HTMLDivElement | null) => {
+    (nodeRef as React.MutableRefObject<HTMLDivElement | null>).current = node;
+    doubleTouchCallback(node);
+  }, [doubleTouchCallback]);
+
   const fileIsSelected = fileSelected?.title === title;
 
   return (
 		<Draggable
-      // bounds={'parent'} 
+      nodeRef={nodeRef}
+      // bounds={'parent'}
       defaultPosition={defaultPos ?? undefined}
     >
 			<FileWrapper
         onClick={() => setFileSelected?.(file)}
-        fileIsSelected={fileIsSelected} 
+        fileIsSelected={fileIsSelected}
         height={height}
-        textcolor={'black'} 
-        ref={doubleTouchCallback} 
+        textcolor={'black'}
+        ref={combinedRef}
         name={"fileWrSap"}
       >
         <img draggable={false} src={img ? img : img} alt={title} />

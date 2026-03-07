@@ -1,4 +1,3 @@
-import { useProfileContext } from '../../contexts/useProfileContext';
 import './monitor.scss';
 import powerBtn from '../../assets/power3.svg';
 
@@ -7,13 +6,6 @@ interface MonitorProps {
 }
 
 const Monitor = (props: MonitorProps) => {
-  const { globalState, globalStateUpdater } = useProfileContext();
-  const { monitorPower } = globalState;
-
-  const powerHandler = () => {
-    globalStateUpdater("monitorPower", true, true);
-  };
-
   return (
     <div className="monitorWrap">
       <div className="monitorTop">
@@ -44,8 +36,8 @@ const Monitor = (props: MonitorProps) => {
       <div className="monitorBottom">
         <p className="version">v1.0.0</p>
         <p className="logo">TB</p>
-        <div className={`on-indicator ${monitorPower ? "none" : "off-indicator"}`}></div>
-        <div onClick={powerHandler} className="power-button">
+        <div className="on-indicator"></div>
+        <div className="power-button">
           <img
             src={powerBtn}
             alt="powerbutton"
