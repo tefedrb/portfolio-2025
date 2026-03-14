@@ -3,7 +3,7 @@ import { isMobile } from "react-device-detect";
 import Draggable from 'react-draggable'; 
 import { OpenFileInterface } from "../../../types/globalTypes";
 import { FOLDER_CLOSED_PATH, FOLDER_OPEN_PATH } from "../../constants/icon-file-paths";
-import FolderWrapper from "../shared/FolderFileWrapper";
+import styles from "../shared/FolderFileWrapper.module.css";
 import { FileIconInterface } from "../../window/windowTypes";
 import { useWindowContext } from "../../../contexts/windowContext";
 import { useCallback, useRef } from "react";
@@ -45,10 +45,10 @@ const XPFolder = ({ title, windowData, defaultPos }: FolderProps) => {
       bounds={'parent'}
       defaultPosition={defaultPos}
     >
-			<FolderWrapper ref={combinedRef} name={"folderWrSap"}>
+			<div ref={combinedRef} className={`${styles.wrapper} ${styles.folder}`}>
         <img draggable={false} src={img ? img : img} alt={title} />
         <label>{title}</label>
-			</FolderWrapper>
+			</div>
 		</Draggable>
   );
 };

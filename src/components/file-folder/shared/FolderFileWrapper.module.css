@@ -1,0 +1,46 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 75px;
+  text-align: center;
+  align-items: center;
+}
+
+/* File variant */
+.file {
+  margin-top: 2em;
+}
+
+.file img {
+  width: 75px;
+  height: auto;
+}
+
+/* Folder variant */
+.folder {
+  margin-top: 0;
+}
+
+.folder img {
+  width: 100%;
+  height: 10%;
+}
+
+/* ADJUSTING FOR MOBILE VIEW */
+@media (max-width: 948px) and (min-height: 500px) {
+  .wrapper {
+    width: 55px;
+    height: auto !important;
+    margin-right: 0;
+  }
+}
+
+@media screen and (max-width: 651px), screen and (max-height: 757px) {
+  .wrapper {
+    margin-top: 2%;
+    color: green;
+    flex-direction: column;
+    justify-content: center;
+  }
+}

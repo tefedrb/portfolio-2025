@@ -3,7 +3,7 @@ import { isMobile } from 'react-device-detect';
 import { useDoubleClick } from '../../hooks/hooks';
 import './File.css';
 import Draggable from 'react-draggable';
-import FileWrapper from '../shared/FolderFileWrapper';
+import styles from '../shared/FolderFileWrapper.module.css';
 import { useWindowContext } from '../../../contexts/windowContext';
 import { FileIconInterface } from '../../window/windowTypes';
 import { OpenFileInterface } from '../../../types/globalTypes';
@@ -58,17 +58,15 @@ const File = (props: FileProps) => {
       // bounds={'parent'}
       defaultPosition={defaultPos ?? undefined}
     >
-			<FileWrapper
+			<div
         onClick={() => setFileSelected?.(file)}
-        fileIsSelected={fileIsSelected}
-        height={height}
-        textcolor={'black'}
+        className={`${styles.wrapper} ${styles.file}`}
+        style={{ color: 'black', height: height ? `${height}px` : undefined }}
         ref={combinedRef}
-        name={"fileWrSap"}
       >
         <img draggable={false} src={img ? img : img} alt={title} />
         <span style={{ backgroundColor: fileIsSelected ? '#80808069' : 'transparent' }} className="file-title">{title}</span>
-			</FileWrapper>
+			</div>
 		</Draggable>
   );
 }
